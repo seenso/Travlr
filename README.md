@@ -1,3 +1,88 @@
+# React App - Travlr
+
+## Project Pitch:
+The aim of our web application is to alleviate the struggle of planning trips with large groups of people. This application will allow users to create an account and log in to see all vacations they are participating in. Users can create new vacation plans and select other users that are able to participate in planning that specific vacation. Within those vacations, they can see other users that are also participating. Each user will be able to add options for potential lodging, food places and activities the group can decide to include in their trip. Each user may vote on their favorite options. The estimated cost for the highest voted options will be compared to the estimated budget for the entire trip -- This information will be displayed for all users within the vacation to see.
+
+### Framework/Mockup (backend):
+![backend](https://i.ibb.co/Wt44S4X/Backend-Mockup.png)
+
+### Framework/Mockup (frontend):
+![frontend1](https://i.ibb.co/zVFVjHH/Travlr-1.png)
+![frontend2](https://i.ibb.co/0XR0MFV/Travlr-2.png)
+![frontend3](https://i.ibb.co/zRkHM07/Travlr-3.png)
+![frontend4](https://i.ibb.co/zn9Xgbt/Travlr-4.png)
+![frontend5](https://i.ibb.co/2jqMTf9/Travlr-5.png)
+![frontend6](https://i.ibb.co/nrqHfXh/Travlr-6.png)
+![frontend7](https://i.ibb.co/HCKBbWw/Travlr-7.png)
+
+## User Stories:
+As a user, I should be able to:
+- Create a new account (CREATE)
+- Log in to & Log out of an account
+- View all vacation plans user is part of (READ)
+- Create new vacation plans (CREATE)
+- Delete any vacation plan user itself created (DELETE)
+- See all people who are in each vacation planning group (READ)
+- Add user to already existing vacation planning groups (CREATE)
+- Remove user (itself, not other users) from a vacation it is a part of (DELETE)
+- See all Lodging, Food and Activity options my group is considering (READ)
+- Add new Lodging, Food and Activity options to a vacation that user is part of (CREATE)
+- Edit info for any option (Lodging, Food, Activity) user created previously (UPDATE)
+- Delete any option user created previously (DELETE)
+- Vote for the options user would like to have happen during the trip (UPDATE)
+- See what options other users within the vacation planning group have voted on (READ)
+- Change user’s votes for options (UPDATE)
+- See options that have the highest votes show at the top of each list (a list each for Lodging, Food and Activities)
+- See the estimated budget for the vacation compared to the estimated cost of the options with the highest votes
+
+
+## Project Requirements:
+For this project, you must:
+
+    ☑ Use a Rails API backend with a React frontend.
+    ☑ Have at least two models with a one-to-many relationship on the backend, with full CRUD actions for at least one resource. (More than two related models is also fine — if you need three models and a many-to-many relationship, go for it!).
+      Relationships:
+        - One-to-many: Vacation ⇒ Lodging Options
+        - One-to-many: Vacation ⇒ Food Options
+        - One-to-many: Vacation ⇒ Activity Options
+        - Many-to-many: Vacations ⇒ Users
+      CRUD Actions:
+        - Vacations: CREATE, READ, UPDATE, DESTROY
+        - Lodgings: CREATE, READ, UPDATE, DESTROY
+        - Foods: CREATE, READ, UPDATE, DESTROY
+        - Activities: CREATE, READ, UPDATE, DESTROY
+        - Users: CREATE, UPDATE
+        - Vacation_Users (join table): CREATE
+    ☑ Have at least two different client-side routes using React Router
+        - See frontend mockup
+    ☑ Build a separate React frontend application that interacts with the API to perform CRUD actions.
+    ☑ Use good OO design patterns. You should have separate classes for each of your models, and create instance - and class methods as necessary.
+
+
+## Bonus Deliverables:
+As a user, it would be nice to be able to:
+- Reset my password if it has been forgotten
+- Select which options (Lodging, Food, Activity) have been decided on for the vacation (UPDATE)
+- See calendar render on page with time blocks for each selected option (i.e. check in/check out for lodging, planned time for specific food/activity, etc.) (READ)
+- See itinerary of planned options (Lodging, Food and Activities) (READ)
+- See countdown leading up to Vacation
+- Have criteria for users to be added to an existing vacation (i.e. another user needs to approve their request to join, email is sent inviting a new user, password required for a new user to join the existing vacation, etc.)
+- llow users to opt in  or out of certain options when it does not plan to participate in that option
+- Have estimated cost of vacation divided by attendees so each knows how much it might cost
+- Have the estimated cost be adjusted based on which users will be participating in each option
+
+
+
+
+
+
+
+
+
+
+
+-----
+
 # Project Template: React/Rails API
 
 ## Description
