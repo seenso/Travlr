@@ -190,8 +190,9 @@ puts "✈ Users created"
 
 # Vacation_User data
   # Vacation 1 (3 users)
+  id = 1
+  
   3.times do
-    id = 1
     VacationUser.create(
       user_id: 1,
       vacation_id: 1
@@ -201,7 +202,6 @@ puts "✈ Users created"
 
   # Vacation 2 (3 users)
   3.times do
-    id = 4
     VacationUser.create(
       user_id: id,
       vacation_id: 2
@@ -211,7 +211,6 @@ puts "✈ Users created"
 
   # Vacation 3 (4 users)
   4.times do
-    id = 7
     VacationUser.create(
       user_id: id,
       vacation_id: 3
