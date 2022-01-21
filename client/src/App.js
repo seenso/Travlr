@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom';
 
-function App() {
+// import Landing from "./components/Landing/Landing";
+import DashBoard from './components/DashBoard/DashBoard';
+import "./app.scss"
+
+export default function App() {
+  // const [user, setUser] = useState(null)
+
+  // useEffect(() => {
+  //   // auto-login
+  //   fetch("/me").then((r) => {
+  //     if (r.ok) {
+  //       r.json().then((user) => setUser(user));
+  //     }
+  //   });
+  // }, []);
+
+  // COMMENTED OUT - WAITING FOR BACKEND
+  // if (!user) return (
+  //   <div className="App">
+  //     <Landing onLogin={setUser} />
+  //   </div>
+  // )
+  // return (
+  //   <div className="App">
+  //     <Dashboard setUser={setUser} user={user} />
+  //   </div>
+  // )
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app">
+        <DashBoard />
+      </div>
+    </Router>
   );
 }
-
-export default App;
