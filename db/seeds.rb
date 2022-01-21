@@ -45,9 +45,9 @@ puts "✈ Vacations created"
 # Lodging data
 # Vacation 1 (Columbus, OH)
 Lodging.create(
-  name: "",
+  name: "Hilton",
   address: Faker::Address.street_address,
-  url: "",
+  url: "https://www.hilton.com",
   check_in: 100000,
   check_out: 150000,
   estimated_cost: Faker::Number.between(from: 500, to: 1200),
@@ -57,9 +57,9 @@ Lodging.create(
 
   # Vacation 2 (Las Vegas, NV)
   Lodging.create(
-    name: "",
+    name: "Cosmopolitan",
     address: Faker::Address.street_address,
-    url: "",
+    url: "https://www.cosmopolitan.com",
     check_in: 110000,
     check_out: 160000,
     estimated_cost: Faker::Number.between(from: 500, to: 1200),
@@ -69,9 +69,9 @@ Lodging.create(
 
   # Vacation 3 (Maui, HI)
   Lodging.create(
-    name: "",
+    name: "Aloha Resort",
     address: Faker::Address.street_address,
-    url: "",
+    url: "https://www.aloharesort.com",
     check_in: 120000,
     check_out: 140000,
     estimated_cost: Faker::Number.between(from: 500, to: 1200),
