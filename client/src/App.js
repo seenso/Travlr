@@ -1,7 +1,7 @@
 import React from 'react'
 // import { BrowserRouter as Router } from 'react-router-dom';
 
-// import Landing from "./components/Landing/Landing";
+import Landing from "./components/Landing/Landing";
 import DashBoard from './components/DashBoard/DashBoard';
 import "./app.scss"
 
@@ -34,6 +34,7 @@ export default function App() {
   return (
       <div className="app">
         <DashBoard />
+        {/* <Landing /> */}
       </div>
   );
 }

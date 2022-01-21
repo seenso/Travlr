@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { Row } from 'react-bootstrap';
 
 import "./navbar.scss"
 
@@ -9,15 +8,17 @@ export default function NavBar() {
   
   return (
     <nav className="navBar">
-        <Row>
-            <div>
+        <div className="wrapper">
+              <div className="left">
                 {/* <h2>Hello, {user.name}</h2> */}
-                <Link className="navbtn" to="/" ><span>✈️TRAVLR</span></Link> 
-                <Link className="navbtn" to="/new"><span>ADD VACATION</span></Link>
-                <Link className="navbtn" to="/vacations"><span>MY VACATIONS</span></Link> 
-                <div>Logout</div>
-            </div>
-        </Row>
+                <Link className="logo" to="/" ><span>✈️TRAVLR</span></Link> 
+              </div>
+              <div className="right">
+                <Link className="navlink" to="/new"><span>ADD VACATION</span></Link>
+                <Link className="navlink" to="/vacations"><span>MY VACATIONS</span></Link> 
+                <button>Logout</button>
+              </div>
+        </div>
     </nav>
   );
 }

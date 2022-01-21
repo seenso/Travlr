@@ -1,0 +1,49 @@
+.navBar{
+    width: 100%;
+    height: 70px;    
+    background-color: #f7d54dc9;
+    position: fixed;
+    top: 0;
+
+    .wrapper{
+      // padding top to bottom 10
+        // padding left to right 30px
+        padding: 20px 30px;
+        display: flex;
+        align-items: center;
+        // three elements will be equally divided on top
+        justify-content: space-between;
+
+        .left{
+            display: flex;
+            align-items: center;
+
+            .logo {
+                font-size: 20px;
+                font-weight: 700;
+                text-decoration: none;
+                // inherits the color from parent component
+                margin-right: 30px;
+            }
+        }
+
+        .right {
+            display: flex;
+            align-items: center;
+
+
+            .navlink{
+                font-size: 20px;
+                font-weight: 700;
+                text-decoration: none;
+                margin-right: 40px
+            }
+        }
+
+
+    }
+
+
+}
+
+
