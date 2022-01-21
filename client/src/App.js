@@ -1,12 +1,13 @@
 import React from 'react'
-import { BrowserRouter as Router } from 'react-router-dom';
+// import { BrowserRouter as Router } from 'react-router-dom';
 
 // import Landing from "./components/Landing/Landing";
 import DashBoard from './components/DashBoard/DashBoard';
 import "./app.scss"
 
 export default function App() {
-  // const [user, setUser] = useState(null)
+
+   // const [user, setUser] = useState(null)
 
   // useEffect(() => {
   //   // auto-login
@@ -29,11 +30,10 @@ export default function App() {
   //   </div>
   // )
 
+ 
   return (
-    <Router>
       <div className="app">
         <DashBoard />
       </div>
-    </Router>
   );
 }

@@ -16,12 +16,8 @@ export default function DashBoard() {
             <NavBar />
             <div className="content">
                 <Routes>
-                    <Route exact path="/new">
-                        <NewVacation />
-                    </Route>
-                    <Route exact path="/vacations">
-                        <Vacations /> 
-                    </Route>
+                    <Route exact path="/new" element={<NewVacation />} />
+                    <Route exact path="/vacations" element={<Vacations /> } />
                 </Routes>
             </div>
         </div>
