@@ -1,7 +1,201 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+puts "✈ Destroying existing seed data..."
+
+Lodging.destroy_all
+Food.destroy_all
+Event.destroy_all
+Vacation.destroy_all
+User.destroy_all
+
+puts "✈ Ready to takeoff!"
+
+# Vacation data
+  v1 = Vacation.create(
+    title: "Family Reunion",
+    start_date: "2/14/2022",
+    end_date: "2/20/2022",
+    location: "Columbus, OH",
+    number_of_foods: 15,
+    number_of_actities: 7,
+    estimated_budget: 5000
+  )
+
+  v2 = Vacation.create(
+    title: "Vegas Bday",
+    start_date: "5/21/2022",
+    end_date: "5/30/2022",
+    location: "Las Vegas, NV",
+    number_of_foods: 21,
+    number_of_actities: 12,
+    estimated_budget: 15000
+  )
+
+  v3 = Vacation.create(
+    title: "Girls Hawaii Trip",
+    start_date: "7/8/2022",
+    end_date: "7/18/2022",
+    location: "Maui, HI",
+    number_of_foods: 23,
+    number_of_actities: 9,
+    estimated_budget: 8000
+  )
+
+puts "✈ Vacations created"
+
+# Lodging data
+  10.times do
+    Lodging.create(
+      name: "",
+      address: Faker::Address.street_address,
+      url: "",
+      check_in: time,
+      check_out: time,
+      estimated_cost: Faker::Number.between(from: 500, to: 1200),
+      likes: 0,
+      vacation_id: #
+    )
+  end
+
+puts "✈ Lodging created"
+
+# Food data
+  # Vacation 1 (Columbus, OH)
+    15.times do
+      name = Faker::Restaurant.name
+      Food.create(
+        name: name,
+        address: Faker::Address.street_address,
+        url: "https://www.#{name}.com",
+        hours: "8:00AM - 9:00PM",
+        desc: Faker::Restaurant.description,
+        estimated_cost: Faker::Number.between(from: 100, to: 400),
+        likes: 0,
+        vacation_id: 1
+      )
+    end
+
+    # Vacation 2 (Las Vegas, NV)
+    21.times do
+      name = Faker::Restaurant.name
+      Food.create(
+        name: name,
+        address: Faker::Address.street_address,
+        url: "https://www.#{name}.com",
+        hours: "9:00AM - 4:00AM",
+        desc: Faker::Restaurant.description,
+        estimated_cost: Faker::Number.between(from: 400, to: 800),
+        likes: 0,
+        vacation_id: 2
+      )
+    end
+
+    # Vacation 3 (Maui, HI)
+    23.times do
+      name = Faker::Restaurant.name
+      Food.create(
+        name: name,
+        address: Faker::Address.street_address,
+        url: "https://www.#{name}.com",
+        hours: "10:00AM - 5:00PM",
+        desc: Faker::Restaurant.description,
+        estimated_cost: Faker::Number.between(from: 250, to: 400),
+        likes: 0,
+        vacation_id: 3
+      )
+    end
+
+puts "✈ Food created"
+
+# Activity data
+  # Vacation 1 (Columbus, OH)
+    7.times do
+      vendor = Faker::Commerce.vendor
+      Activity.create(
+        name: name,
+        address: Faker::Address.street_address,
+        url: "https://www.#{name}.com",
+        hours: "7:30AM - 6:00PM",
+        desc: Faker::Lorem.paragraph(sentence_count: 2),
+        estimated_cost: Faker::Number.between(from: 50, to: 500),
+        likes: 0,
+        vacation_id: 1
+      )
+    end
+
+  # Vacation 2 (Las Vegas, NV)
+    12.times do
+      vendor = Faker::Commerce.vendor
+      Activity.create(
+        name: name,
+        address: Faker::Address.street_address,
+        url: "https://www.#{name}.com",
+        hours: "6:00AM - 1:00AM",
+        desc: Faker::Lorem.paragraph(sentence_count: 2),
+        estimated_cost: Faker::Number.between(from: 50, to: 500),
+        likes: 0,
+        vacation_id: 2
+      )
+    end
+
+  # Vacation 3 (Maui, HI)
+    9.times do
+      vendor = Faker::Commerce.vendor
+      Activity.create(
+        name: name,
+        address: Faker::Address.street_address,
+        url: "https://www.#{name}.com",
+        hours: "9:00AM - 5:00PM",
+        desc: Faker::Lorem.paragraph(sentence_count: 2),
+        estimated_cost: Faker::Number.between(from: 150, to: 900),
+        likes: 0,
+        vacation_id: 3
+      )
+    end
+
+puts "✈ Activities created"
+
+# User data
+  ## Figure out how many users will be on each trip
+  10.times do
+    fakeName = Faker::Name.unique.first_name
+    User.create(
+      username: fakeName,
+      email: "#{fakeName}@email.com"
+    )
+  end
+
+puts "✈ Users created"
+
+# Vacation_User data
+  # Vacation 1 (3 users)
+    3.times do
+      id = 1
+      VacationUser.create(
+        user_id: 1,
+        vacation_id: 1
+      )
+      id += 1
+    end
+
+  # Vacation 2 (3 users)
+  3.times do
+    id = 4
+    VacationUser.create(
+      user_id: #,
+      vacation_id: 2
+    )
+    id += 1
+  end
+
+  # Vacation 3 (4 users)
+  4.times do
+    id = 7
+    VacationUser.create(
+      user_id: #,
+      vacation_id: 3
+    )
+    id += 1
+  end
+
+puts "✈ Vacation_Users created"
+
+puts "✈✈✈✈✈ Done seeding! ✈✈✈✈✈"
