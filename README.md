@@ -4,7 +4,7 @@
 The aim of our web application is to alleviate the struggle of planning trips with large groups of people. This application will allow users to create an account and log in to see all vacations they are participating in. Users can create new vacation plans and select other users that are able to participate in planning that specific vacation. Within those vacations, they can see other users that are also participating. Each user will be able to add options for potential lodging, food places and activities the group can decide to include in their trip. Each user may vote on their favorite options. The estimated cost for the highest voted options will be compared to the estimated budget for the entire trip -- This information will be displayed for all users within the vacation to see.
 
 ### Framework/Mockup (backend):
-![backend](https://i.ibb.co/Wt44S4X/Backend-Mockup.png)
+![backend](https://i.ibb.co/d05Dt9f/Backend-Mockup.png)
 
 ### Framework/Mockup (frontend):
 ![frontend1](https://i.ibb.co/zVFVjHH/Travlr-1.png)
