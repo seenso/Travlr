@@ -18,7 +18,7 @@ export default function NavBar( {setUser} ) {
         <div className="wrapper">
               <div className="left">
                 {/* <h2>Hello, {user.name}</h2> */}
-                <Link className="logo" to="/" ><span>✈️TRAVLR</span></Link> 
+                <Link className="logo" to="/" ><span>TRAVLR</span></Link> 
               </div>
               <div className="right">
                 <Link className="navlink" to="/new"><span>ADD VACATION</span></Link>
