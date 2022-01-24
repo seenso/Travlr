@@ -57,11 +57,11 @@ Lodging.create(
 
   # Vacation 2 (Las Vegas, NV)
   Lodging.create(
-    name: "",
+    name: "Air BnB - Downtown Loft",
     address: Faker::Address.street_address,
-    url: "",
-    check_in: 110000,
-    check_out: 160000,
+    url: "airbnb.com",
+    check_in: "8:00AM",
+    check_out: "12:00PM",
     estimated_cost: Faker::Number.between(from: 500, to: 1200),
     likes: 0,
     vacation_id: 2
@@ -69,11 +69,11 @@ Lodging.create(
 
   # Vacation 3 (Maui, HI)
   Lodging.create(
-    name: "",
+    name: "Hilton Hotel",
     address: Faker::Address.street_address,
-    url: "",
-    check_in: 120000,
-    check_out: 140000,
+    url: "hilton.com",
+    check_in: "3:00PM",
+    check_out: "11:00AM",
     estimated_cost: Faker::Number.between(from: 500, to: 1200),
     likes: 0,
     vacation_id: 3
