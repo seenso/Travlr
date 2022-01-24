@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
+rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
     def index
         render json: User.all
     end
 
-     #POST /signup
+    #POST /signup
     def create
         user = User.create!(user_params)
         session[:user_id] = user.id
@@ -21,7 +22,10 @@ class UsersController < ApplicationController
 
     def user_params
         # The has_secure_password (Links to an external site.) method also provides two new instance methods on your User model: password and password_confirmation. These methods don't correspond to database columns! Instead, to make these methods work, your users table must have a password_digest column.
-        params.permit(:username, :password, :password_confirmation, :image_url, :bio)
+        params.permit(:username, :email, :password, :password_confirmation, :image_url, :bio)
     end
 
+    def record_invalid(invalid)
+        render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
+    end
 end
