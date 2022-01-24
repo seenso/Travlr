@@ -45,11 +45,11 @@ puts "✈ Vacations created"
 # Lodging data
 # Vacation 1 (Columbus, OH)
 Lodging.create(
-  name: "",
+  name: "Hilton",
   address: Faker::Address.street_address,
-  url: "",
-  check_in: 100000,
-  check_out: 150000,
+  url: "https://www.hilton.com",
+  check_in: "10:00AM",
+  check_out: "3:00PM",
   estimated_cost: Faker::Number.between(from: 500, to: 1200),
   likes: 0,
   vacation_id: 1
