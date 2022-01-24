@@ -1,7 +1,5 @@
 class VacationsController < ApplicationController
-
     def index
-        render json: Vacation.all
+        render json: User.all
     end
-
 end
