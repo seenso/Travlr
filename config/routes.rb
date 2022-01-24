@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   resources :activities, only:[:index, :create]
   resources :foods, only:[:index, :create]
   resources :lodgings, only:[:index, :create]
-  # resources :vacation_users, only:[:create]
-  resources :vacations, only:[:index]
-  resources :users, only:[:index, :create]
+  resources :vacation_users, only:[:create]
+  resources :vacations, only:[:index, :create]
+  resources :users, only:[:index, :create, :show]
 
   # for user authentication
   post "/signup", to: "users#create"

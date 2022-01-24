@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
+<<<<<<< HEAD
+=======
+rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+>>>>>>> aeee07af7b37716c850c4e0f8575b2dbc226e49c
 
     def index
         render json: User.all
@@ -28,4 +32,11 @@ rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
     def record_invalid(invalid)
         render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
     end
+<<<<<<< HEAD
+=======
+
+    def record_not_found
+        render json: {error: "User not found"}, status: :not_found 
+    end
+>>>>>>> aeee07af7b37716c850c4e0f8575b2dbc226e49c
 end
