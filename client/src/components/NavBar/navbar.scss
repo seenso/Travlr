@@ -1,5 +1,6 @@
+@import "../../global.scss";
+
 .navBar{
-  // border-style: solid;
   width: 100%;
 
   .wrapper{
@@ -28,7 +29,6 @@
           display: flex;
           align-items: center;
 
-
           .navlink{
               font-family: 'IBM Plex Sans', sans-serif;
               font-size: 20px;
@@ -37,9 +37,5 @@
               margin-right: 40px
           }
       }
-
-
   }
-
-
 }
