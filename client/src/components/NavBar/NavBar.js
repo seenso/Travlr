@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import "./navbar.scss"
 
 
-export default function NavBar( {} ) {
-  
+export default function NavBar( {setUser} ) {
+
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {

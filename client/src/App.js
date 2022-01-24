@@ -6,8 +6,7 @@ import DashBoard from './components/DashBoard/DashBoard';
 import "./app.scss"
 
 export default function App() {
-
-   // const [user, setUser] = useState(null)
+  const [user, setUser] = useState(null)
 
   // useEffect(() => {
   //   // auto-login

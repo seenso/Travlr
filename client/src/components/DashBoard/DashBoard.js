@@ -1,4 +1,4 @@
-import React from 'react'
+import { useEffect, useState } from "react"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import NavBar from "../NavBar/NavBar";
@@ -8,18 +8,13 @@ import Vacations from "../Vacations/Vacations";
 import "./dashboard.scss"
 
 
-export default function DashBoard() {
+export default function DashBoard({ setUser }) {
 
 
-
-  function handleLogOut (){
-    console.log("LOGGED OUT!")
-  }
-  
   return (
     <Router>
         <div className="container">
-            <NavBar handleLogOut={handleLogOut}/>
+            <NavBar setUser={setUser}/>
             <div className="content">
                 <Routes>
                     <Route exact path="/new" element={<NewVacation />} />
