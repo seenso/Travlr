@@ -4,7 +4,15 @@ import { Link } from 'react-router-dom';
 import "./navbar.scss"
 
 
-export default function NavBar() {
+export default function NavBar( {} ) {
+  
+  function handleLogoutClick() {
+    fetch("/logout", { method: "DELETE" }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
+  }
   
   return (
     <nav className="navBar">
@@ -16,7 +24,7 @@ export default function NavBar() {
               <div className="right">
                 <Link className="navlink" to="/new"><span>ADD VACATION</span></Link>
                 <Link className="navlink" to="/vacations"><span>MY VACATIONS</span></Link> 
-                <button>Logout</button>
+                <button onClick={handleLogoutClick}>Logout</button>
               </div>
         </div>
     </nav>

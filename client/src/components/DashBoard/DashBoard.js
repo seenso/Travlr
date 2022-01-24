@@ -10,11 +10,16 @@ import "./dashboard.scss"
 
 export default function DashBoard() {
 
+
+
+  function handleLogOut (){
+    console.log("LOGGED OUT!")
+  }
   
   return (
     <Router>
         <div className="container">
-            <NavBar />
+            <NavBar handleLogOut={handleLogOut}/>
             <div className="content">
                 <Routes>
                     <Route exact path="/new" element={<NewVacation />} />
