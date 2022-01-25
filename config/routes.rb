@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
-  resources :activities, only:[:index, :create]
-  resources :foods, only:[:index, :create]
-  resources :lodgings, only:[:index, :create]
+  resources :activities, only:[:index, :create, :update]
+  resources :foods, only:[:index, :create, :update]
+  resources :lodgings, only:[:index, :create, :update]
   resources :vacation_users, only:[:create]
   resources :vacations, only:[:index, :create]
   resources :users, only:[:index, :create, :show]
