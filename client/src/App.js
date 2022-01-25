@@ -17,12 +17,8 @@ export default function App() {
     });
   }, []);
 
-
-  if (!user) return (
-    <div className="App">
-      <Landing onLogin={setUser} />
-    </div>
-  )
+  if (!user) return (<Landing onLogin={setUser} />)
+  
   return (
     <div className="App">
       <DashBoard setUser={setUser} user={user} />

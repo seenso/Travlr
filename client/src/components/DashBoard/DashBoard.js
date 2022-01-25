@@ -10,9 +10,9 @@ import "./dashboard.scss"
 
 export default function DashBoard({ setUser }) {
 
-
   return (
     <Router>
+        <div>I'm the DASHBOARD</div>
         <div className="container">
             <NavBar setUser={setUser}/>
             <div className="content">
