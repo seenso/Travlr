@@ -7,9 +7,10 @@ class Vacation < ApplicationRecord
     validates :number_of_activities, presence: true
     validates :estimated_budget, presence: true
 
-    has_many :lodgings
-    has_many :foods
-    has_many :activities
-    has_many :vacation_users
+    has_many :lodgings, dependent: :destroy
+    has_many :foods, dependent: :destroy
+    has_many :activities, dependent: :destroy
+    has_many :vacation_users, dependent: :destroy
     has_many :users, through: :vacation_users
 end
+

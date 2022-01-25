@@ -17,6 +17,25 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
         render json: activity, status: :ok
     end
 
+    def increment_likes
+        activity = find_activity
+        activity.update!(likes: activity.likes + 1)
+        render json: activity
+    end
+
+    
+    def decrement_likes
+        activity = find_activity
+        activity.update!(likes: activity.likes - 1)
+        render json: activity
+    end
+
+    def destroy
+        activity = find_activity
+        activity.destroy!
+        head :no_content
+    end
+
     private
 
         def activity_params

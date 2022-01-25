@@ -1,13 +1,31 @@
 class VacationsController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
+rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
     def index
-        render json: User.all
+        render json: Vacation.all
     end
 
     def create
         vacation = Vacation.create!(vacation_params)
         render json: vacation, status: :created
+    end
+
+    def show
+        vacation = find_vacation
+        render json: vacation, status: :ok
+    end
+    
+    def update
+        vacation = find_vacation
+        vacation.update!(vacation_params)
+        render json: vacation
+    end
+
+    def destroy
+        vacation = find_vacation
+        vacation.destroy!
+        head :no_content
     end
 
     private
@@ -17,5 +35,13 @@ rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
         def record_invalid(invalid)
             render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
+        end
+
+        def find_vacation
+            Vacation.find(params[:id])
+        end
+
+        def render_not_found
+            render json: { error: "Food not found" }, status: :not_found
         end
 end
