@@ -11,13 +11,18 @@ export default function App() {
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
+      // console.log(r)
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
     });
   }, []);
 
-  if (!user) return (<Landing onLogin={setUser} />)
+  if (!user) return (
+    <div className="App">
+      <Landing onLogin={setUser} />
+    </div>
+  )
   
   return (
     <div className="App">

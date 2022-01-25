@@ -3,8 +3,7 @@ import SignUp from '../SignUp/SignUp';
 import { Col } from 'react-bootstrap';
 
 
-
-export default function Landing() {
+export default function Landing( { onLogin }) {
 
     function click() {
         alert("CLICK")
@@ -13,16 +12,14 @@ export default function Landing() {
     return (
         <>
             <div className="container" id="landing">
-            <div>I'm the Landing</div>
-                {/* <img src="some-url" alt="title-image" /> */}
+                <div>I'm the Landing</div>
+                {/* <img src="https://e7.pngegg.com/pngimages/386/732/png-clipart-airplane-aircraft-logo-airplane-blue-logo-thumbnail.png" alt="landing" /> */}
                 <h1 className="title">TRAVLR</h1>
                 <p>Vacations made easy!</p>
-                <div onClick={click}>
-                    <Login />
-                </div>
-                <div>
-                    <SignUp />
-                </div>
+                <Col>
+                    <Login onLogin={onLogin}/>
+                    <SignUp onLogin={onLogin}/>
+                </Col>
             </div>
         </>
     )
