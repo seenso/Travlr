@@ -1,14 +1,9 @@
 class VacationsController < ApplicationController
-<<<<<<< HEAD
-=======
 rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
->>>>>>> aeee07af7b37716c850c4e0f8575b2dbc226e49c
     def index
         render json: User.all
     end
-<<<<<<< HEAD
-=======
 
     def create
         vacation = Vacation.create!(vacation_params)
@@ -23,5 +18,4 @@ rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
         def record_invalid(invalid)
             render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
         end
->>>>>>> aeee07af7b37716c850c4e0f8575b2dbc226e49c
 end

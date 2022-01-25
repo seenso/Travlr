@@ -11,6 +11,7 @@ export default function App() {
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
+      // console.log(r)
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
@@ -23,6 +24,7 @@ export default function App() {
       <Landing onLogin={setUser} />
     </div>
   )
+  
   return (
     <div className="App">
       <DashBoard setUser={setUser} user={user} />
