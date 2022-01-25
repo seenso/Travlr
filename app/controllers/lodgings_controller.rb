@@ -17,6 +17,24 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
         render json: lodging, status: :ok
     end
 
+    def increment_likes
+        lodging = find_lodging
+        lodging.update!(likes: lodging.likes + 1)
+        render json: lodging
+    end
+
+    def decrement_likes
+        lodging = find_lodging
+        lodging.update!(likes: lodging.likes - 1)
+        render json: lodging
+    end
+
+    def destroy
+        lodging = find_lodging
+        lodging.destroy!
+        head :no_content
+    end
+
     private
         def lodging_params
             params.permit(:name, :address, :url, :check_in, :check_out, :estimated_cost, :vacation_id)
@@ -34,4 +52,3 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
             render json: { error: "Lodging not found" }, status: :not_found
         end
 end
-

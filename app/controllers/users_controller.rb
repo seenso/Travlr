@@ -13,6 +13,19 @@ rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
         render json: user, status: :created
     end
 
+    def destroy
+        user = find_user
+        user.destroy!
+        head :no_content
+    end
+
+    def update
+        user = find_user
+        user.update!(user_params)
+        render json: user, status: :ok
+    end
+
+
     # GET /me
     # handles the auto-login and allows user to stay logged in when page refreshes
     def show
@@ -28,6 +41,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
     def record_invalid(invalid)
         render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
+    end
+
+    def find_user
+        User.find(params[:id])
     end
 
     def record_not_found

@@ -4,8 +4,8 @@ class CreateLodgings < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :address
       t.string :url
-      t.time :check_in
-      t.time :check_out
+      t.string :check_in
+      t.string :check_out
       t.integer :estimated_cost
       t.integer :likes
       t.references :vacation, null: false, foreign_key: true

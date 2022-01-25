@@ -16,6 +16,24 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
         food.update!(food_params)
         render json: food, status: :ok
     end
+    
+    def increment_likes
+        food = find_food
+        food.update!(likes: food.likes + 1)
+        render json: food
+    end
+
+    def decrement_likes
+        food = find_food
+        food.update!(likes: food.likes - 1)
+        render json: food
+    end
+
+    def destroy
+        food = find_food
+        food.destroy!
+        head :no_content
+    end
 
     private
         def food_params
