@@ -49,7 +49,7 @@ export default function Login( { onLogin }) {
         return (
             <Modal
                 {...props}
-                size="lg"
+                size="m"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
@@ -83,7 +83,11 @@ export default function Login( { onLogin }) {
                             ></input>
                         </div>
                         <div>
-                            <button type="submit">{isLoading ? "Loading..." : "Log In"}</button>
+                            <Button 
+                                style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                                type="submit"
+                            >{isLoading ? "Loading..." : "Log In"}
+                            </Button>
                         </div>
                         <div>
                             {errors.map((err) => (
@@ -92,9 +96,6 @@ export default function Login( { onLogin }) {
                         </div>
                     </Form>
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
             </Modal>
         );
     }

@@ -56,7 +56,7 @@ export default function SignUp( {onLogin}) {
         return (
             <Modal
                 {...props}
-                size="lg"
+                size="m"
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
@@ -100,7 +100,11 @@ export default function SignUp( {onLogin}) {
                             ></input>
                         </div>
                         <div>
-                            <button type="submit">{isLoading ? "Loading..." : "Log In"}</button>
+                            <Button 
+                                style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                                type="submit"
+                            >{isLoading ? "Loading..." : "Sign Up"}
+                            </Button>
                         </div>
                         <div>
                             {errors.map((err) => (
@@ -109,9 +113,6 @@ export default function SignUp( {onLogin}) {
                         </div>
                     </Form>
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
             </Modal>
         );
     }
@@ -122,8 +123,7 @@ export default function SignUp( {onLogin}) {
                 variant="primary" 
                 onClick={() => setModalShow(true)}
                 style={{ backgroundColor: "#3E5C76", margin: "1%" }}
-            >
-                Sign Up
+            >Sign Up
             </Button>
 
             <MyVerticallyCenteredModal
