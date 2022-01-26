@@ -7,7 +7,7 @@ import Vacations from "../Vacations/Vacations";
 import "./dashboard.scss"
 
 
-export default function DashBoard({ setUser }) {
+export default function DashBoard({ setUser, user }) {
 
 
   return (
@@ -17,7 +17,7 @@ export default function DashBoard({ setUser }) {
             <div className="content">
                 <Routes>
                     <Route exact path="/new" element={<NewVacation />} />
-                    <Route exact path="/vacations" element={<Vacations /> } />
+                    <Route exact path="/vacations" element={<Vacations user={user} /> } />
                 </Routes>
             </div>
         </div>
