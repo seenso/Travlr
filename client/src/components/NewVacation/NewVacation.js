@@ -50,7 +50,7 @@ export default function NewVacation( { user }) {
           />
         </div>
         <div className="form-group">
-          <h1 clasName="new-vacation-text">Location*</h1>
+          <h1 className="new-vacation-text">Location*</h1>
           <input 
             className="input-form" 
             placeholder="Where are you going?"
@@ -63,7 +63,7 @@ export default function NewVacation( { user }) {
             placeholder="Who's coming with?"
           />
         </div>
-        <h1 clasName="dates">Start/End Dates*</h1>
+        <h1 className="dates">Start/End Dates*</h1>
         <DatePicker
           selectsRange={true}
           startDate={startDate}
