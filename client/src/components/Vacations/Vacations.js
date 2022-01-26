@@ -1,27 +1,49 @@
 import React from 'react';
-import { Row } from 'react-bootstrap';
+import VacationCard from "../VacationCard/VacationCard";
+import { useState } from 'react';
 
 import "./vacations.scss"
 
 
-export default function Vacations({user}) {
-  console.log(user.vacations.map(v=>console.log(v.title)))
+export default function Vacations({user, body, setBody}) {
+const [vacationCard, setVacationCard] = useState("");
+
+  // This deletes a VacationUser instance that has the @current_user.id and the clicked vacation's id. This does not re-render all vacations. The page needs to be reset, then user is taken back to the login page. Once logged back in, changes will show.
+  function handleDelete (e) {
+    const vacation = e.target.id
+    fetch(`/vacation_users/${vacation}`, {
+      method:'DELETE'
+      })
+      .then(res => {
+        if(res.ok){
+          console.log(res)
+          setBody("deleted")
+        } else {
+        res.json().then(console.log)
+        }
+      })
+    }
+
+    function seePlans (e) {
+      setBody("card")
+      console.log(e.target.id)
+      fetch(`/vacations/${e.target.id}`)
+        .then(res => res.json())
+        .then(json=>setVacationCard(json))
+      }
+
+    function returnToVacations (){
+      setBody("vacations")
+    }
+    
   return (
-    <nav className="vacation-container">
-        <Row>
-            {user.vacations.map((v)=>
-              <div className="card" id={v.id}>
-                  <h2 className="title">{v.title}</h2>
-                  <p className="info"> Start Date: {v.start_date} End Date: {v.end_date} </p> 
-                  <p className="info"> Budget: $ {v.estimated_budget}</p>                   
-                  <p className="info"> Location: {v.location}</p>
-                  <p className="info"> Food Options: {v.number_of_food}</p>        
-                  <p className="info"> Activities: {v.number_of_activities}</p>       
-                  <p className="info"> Participants: </p>
-                  <button className="button">See Plans</button>
-                  <button className="button">Remove from Vacations</button>
-              </div>)}
-        </Row>
-    </nav>
+      <nav className="vacations">
+            {body === "vacations" ?
+              user.vacations.map((v)=> 
+                <VacationCard body={body} setBody={setBody} vacation={v} handleDelete={handleDelete} handleClick={seePlans} buttonText={"See Plans"} key={v.title}/>
+              ) : 
+                <VacationCard body={body} setBody={setBody} vacation={vacationCard} handleDelete={handleDelete} buttonText={"Return to All Vacations"} handleClick={returnToVacations}/>
+                }
+      </nav>
   );
 }
