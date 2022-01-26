@@ -61,25 +61,6 @@ export default function NewVacation( { user, userList, setUserList }) {
     setVacation(vacation)
   }
 
-
-  // async function getVacationId(){
-  //   fetch("/vacation_users", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       data:
-  //       participants.map((u) => (
-  //         // user_id: u.id,
-  //         // vacation_id: vacation.id
-  //         // console.log(u)
-  //         console.log(vacation)
-  //       ))
-  //     }),
-  //   })
-  // }
-
   const createOptions = () => {
     return userList.map((u) => ({value: u.username, label: u.username, id: u.id}))
   }
