@@ -38,7 +38,6 @@ const [vacationCard, setVacationCard] = useState("");
     }
     
   return (
-<<<<<<< HEAD
       <nav className="vacations">
             {body === "vacations" ?
               user.vacations.map((v)=> 
@@ -47,29 +46,5 @@ const [vacationCard, setVacationCard] = useState("");
                 <VacationCard body={body} setBody={setBody} vacation={vacationCard} handleDelete={handleDelete} buttonText={"Return to All Vacations"} handleClick={returnToVacations}/>
                 }
       </nav>
-=======
-    <nav className="vacation-container">
-        <Row>
-            {user.vacations.map((v)=>
-              <div className="vacation-card" id={v.id}>
-                  <h2 className="title">{v.title}</h2>
-                  <p className="info"> Start Date: {v.start_date} End Date: {v.end_date} </p> 
-                  <p className="info"> Budget: $ {v.estimated_budget}</p>                   
-                  <p className="info"> Location: {v.location}</p>
-                  <p className="info"> Food Options: {v.number_of_food}</p>        
-                  <p className="info"> Activities: {v.number_of_activities}</p>       
-                  <p className="info"> Participants: </p>
-                  <Button 
-                    className="button"
-                    style={{ backgroundColor: "#3E5C76", margin: "1%"}}
-                  >See Plans</Button>
-                  <Button 
-                    className="button"
-                    style={{ backgroundColor: "#3E5C76", margin: "1%"}}
-                  >Remove from Vacations</Button>
-              </div>)}
-        </Row>
-    </nav>
->>>>>>> c3bffbe14d8d86542aba135783827e18a78601b0
   );
 }
