@@ -1,3 +1,4 @@
+import React from "react";
 import { Row, Col } from "react-bootstrap";
 import Login from '../Login/Login';
 import SignUp from '../SignUp/SignUp';

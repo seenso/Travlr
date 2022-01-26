@@ -8,7 +8,7 @@ import Vacations from "../Vacations/Vacations";
 import "./dashboard.scss"
 
 
-export default function DashBoard({ user, setUser, vacation, setVacation }) {
+export default function DashBoard({ user, setUser, vacation, setVacation, userList, setUserList }) {
 
 
   return (
@@ -24,6 +24,8 @@ export default function DashBoard({ user, setUser, vacation, setVacation }) {
                         setUser={setUser}
                         vacation={vacation}
                         setVacation={setVacation}
+                        userList={userList}
+                        setUserList={setUserList}
                       />
                     } />
                     <Route exact path="/vacations" element={<Vacations user={user}/> } />
