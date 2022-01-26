@@ -7,7 +7,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
     end
 
     def destroy
-        vacationUser = find_vacationUser
+        vacationUser = VacationUser.find_by(user_id:@current_user.id, vacation_id:params[:id])
         vacationUser.destroy!
         head :no_content
     end
@@ -21,7 +21,4 @@ rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
             render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
         end
 
-        def find_vacationUser
-            VacationUser.find(params[:id])
-        end
 end
