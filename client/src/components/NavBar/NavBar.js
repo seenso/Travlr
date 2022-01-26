@@ -22,7 +22,7 @@ export default function NavBar( {setUser} ) {
               <div className="right">
                 <Link className="navlink" to="/new"><span>ADD VACATION</span></Link>
                 <Link className="navlink" to="/vacations"><span>MY VACATIONS</span></Link> 
-                <button onClick={handleLogoutClick}>Logout</button>
+                <div className="navlink" onClick={handleLogoutClick}>LOG OUT</div>
               </div>
         </div>
     </nav>

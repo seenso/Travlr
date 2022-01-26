@@ -1,23 +1,28 @@
-.card {
-    background-color:#748CAB;
-    width: 400px;
-    height: auto; 
-    border-radius: 25px;
-    padding: 10px;
-    border-color: #0D1321; 
-    border-style: solid;
-    font-weight: 6px;
-  }
+@import "../../global.scss";
+
+
+.vacation-card {
+  font-family: $mainfont;
+  width: 400px;
+  height: auto; 
+  border-radius: 5px;
+  border: 2px solid $secondarycolor;
+  padding: 30px;
+  border-style: solid;
+  font-weight: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+  
+}
+
 .info {
-    background-color: #748CAB;
-    color: black;
-  }
-.title {
-  background-color: #748CAB;
+  // background-color: #748CAB;
   color: black;
 }
 
-.button {
-  margin: 10px;
+.title {
+// background-color: #748CAB;
+color: black;
 }
+
   
