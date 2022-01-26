@@ -118,7 +118,11 @@ export default function SignUp( {onLogin}) {
     
     return (
         <>
-            <Button variant="primary" onClick={() => setModalShow(true)}>
+            <Button 
+                variant="primary" 
+                onClick={() => setModalShow(true)}
+                style={{ backgroundColor: "#3E5C76", margin: "1%" }}
+            >
                 Sign Up
             </Button>
 

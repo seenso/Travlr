@@ -26,7 +26,7 @@ export default function DashBoard({ user, setUser, vacation, setVacation }) {
                         setVacation={setVacation}
                       />
                     } />
-                    <Route exact path="/vacations" element={<Vacations /> } />
+                    <Route exact path="/vacations" element={<Vacations user={user}/> } />
                 </Routes>
             </div>
         </div>

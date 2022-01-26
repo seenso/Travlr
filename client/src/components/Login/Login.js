@@ -3,6 +3,8 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+import "./login.scss"
+
 
 export default function Login( { onLogin }) {
     const [modalShow, setModalShow] = React.useState(false);
@@ -99,7 +101,12 @@ export default function Login( { onLogin }) {
 
     return (
         <>
-            <Button variant="primary" onClick={() => setModalShow(true)}>
+            <Button 
+                className="login-button" 
+                variant="primary" 
+                style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                onClick={() => setModalShow(true)
+            }>
                 Login
             </Button>
 

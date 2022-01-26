@@ -111,6 +111,8 @@ Lodging.create(
   likes: 0,
   vacation_id: 4
 )
+
+
 puts "✈ Lodging created"
 # Food data
   # Vacation 1 (Columbus, OH)
@@ -259,6 +261,14 @@ puts "✈ Users created"
     VacationUser.create(
       user_id: rand(1..10),
       vacation_id: 3
+    )
+  end
+
+    # Vacation 4 (5 users)
+  5.times do
+      VacationUser.create(
+        user_id: rand(1..10),
+        vacation_id: 4
     )
   end
     # Vacation 3 (4 users)
