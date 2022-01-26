@@ -5,6 +5,7 @@ import "./app.scss"
 
 export default function App() {
   const [user, setUser] = useState(null)
+  const [userList, setUserList] = useState(null)
   const [vacation, setVacation] = useState(null)
 
 
@@ -18,9 +19,19 @@ export default function App() {
     });
   }, []);
 
+  useEffect(() => {
+    fetch("/users").then((r) => {
+      // console.log(r)
+      if (r.ok) {
+        r.json().then((userList) => setUserList(userList));
+      }
+    });
+  }, []);
+
+
 
   useEffect(() => {
-    fetch("/vacation").then((r) => {
+    fetch("/vacations").then((r) => {
       if (r.ok) {
         r.json().then((vacation) => setVacation(vacation));
       }
@@ -37,7 +48,14 @@ export default function App() {
   
   return (
     <div className="App">
-      <DashBoard setUser={setUser} user={user} vacation={vacation} setVacation={setVacation}/>
+      <DashBoard 
+        setUser={setUser} 
+        user={user} 
+        vacation={vacation} 
+        setVacation={setVacation}
+        userList={userList}
+        setUserList={setUserList}
+      />
     </div>
   )
 

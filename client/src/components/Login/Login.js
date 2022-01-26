@@ -13,8 +13,7 @@ export default function Login( { onLogin }) {
     let username
     let password
 
-
-
+    
     function handleSubmit(e) {
         e.preventDefault();
         setIsLoading(true);
