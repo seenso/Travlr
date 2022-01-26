@@ -1,7 +1,23 @@
-.new-vacay-container{
-    width: 100%;   
-    background-color: lightblue;
-    position: fixed;
-    margin-top: 70px;
+@import "../../global.scss";
 
+
+.new-vacations{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 70px;
+    padding: 20px 20px 20px;
+    border: 2px solid $secondarycolor;
+
+    
+    .container{
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+        h1{
+            font-size: 30px;
+        }
+    }
 }

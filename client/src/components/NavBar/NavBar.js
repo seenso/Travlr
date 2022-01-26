@@ -17,7 +17,6 @@ export default function NavBar( {setUser} ) {
     <nav className="navBar">
         <div className="wrapper">
               <div className="left">
-                {/* <h2>Hello, {user.name}</h2> */}
                 <Link className="logo" to="/" ><span>✈️TRAVLR</span></Link> 
               </div>
               <div className="right">

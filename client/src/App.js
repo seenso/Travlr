@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-// import { BrowserRouter as Router } from 'react-router-dom';
-
 import Landing from "./components/Landing/Landing";
 import DashBoard from './components/DashBoard/DashBoard';
 import "./app.scss"
 
 export default function App() {
   const [user, setUser] = useState(null)
+  const [vacation, setVacation] = useState(null)
+
 
   useEffect(() => {
     // auto-login
@@ -19,6 +19,16 @@ export default function App() {
   }, []);
 
 
+  useEffect(() => {
+    fetch("/vacation").then((r) => {
+      if (r.ok) {
+        r.json().then((vacation) => setVacation(vacation));
+      }
+    });
+  }, []);
+
+
+
   if (!user) return (
     <div className="App">
       <Landing onLogin={setUser} />
@@ -27,7 +37,7 @@ export default function App() {
   
   return (
     <div className="App">
-      <DashBoard setUser={setUser} user={user} />
+      <DashBoard setUser={setUser} user={user} vacation={vacation} setVacation={setVacation}/>
     </div>
   )
 

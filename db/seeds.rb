@@ -1,14 +1,11 @@
 puts "✈ Destroying existing seed data..."
-
 Vacation.destroy_all
 Lodging.destroy_all
 Food.destroy_all
 Activity.destroy_all
 User.destroy_all
 VacationUser.destroy_all
-
 puts "✈ Ready to takeoff!"
-
 # Vacation data
   Vacation.create(
     title: "Family Reunion",
@@ -19,7 +16,6 @@ puts "✈ Ready to takeoff!"
     number_of_activities: 2,
     estimated_budget: 5000
   )
-
   Vacation.create(
     title: "Vegas Bday",
     start_date: "2022-05-12",
@@ -29,7 +25,6 @@ puts "✈ Ready to takeoff!"
     number_of_activities: 3,
     estimated_budget: 15000
   )
-
   Vacation.create(
     title: "Girls Hawaii Trip",
     start_date: "2022-12-20",
@@ -39,7 +34,6 @@ puts "✈ Ready to takeoff!"
     number_of_activities: 5,
     estimated_budget: 8000
   )
-
   Vacation.create(
     title: "Post Grad Trip",
     start_date: "2022-06-03",
@@ -49,9 +43,7 @@ puts "✈ Ready to takeoff!"
     number_of_activities: 4,
     estimated_budget: 4000
   )
-
 puts "✈ Vacations created"
-
 # Lodging data
 # Vacation 1 (Columbus, OH)
 Lodging.create(
@@ -64,7 +56,6 @@ Lodging.create(
   likes: 0,
   vacation_id: 1
   )
-
 # Vacation 1 (Columbus, OH)
 Lodging.create(
   name: "Hyatt",
@@ -76,7 +67,6 @@ Lodging.create(
   likes: 0,
   vacation_id: 1
   )
-
   # Vacation 2 (Las Vegas, NV)
 Lodging.create(
     name: "Air BnB - Downtown Loft",
@@ -88,7 +78,6 @@ Lodging.create(
     likes: 0,
     vacation_id: 2
   )
-
   # Vacation 3 (Maui, HI)
 Lodging.create(
     name: "Hilton Hotel",
@@ -100,7 +89,6 @@ Lodging.create(
     likes: 0,
     vacation_id: 3
   )
-
  # Vacation 4 (Orlando, FL)
  Lodging.create(
   name: "Disney's Contemporary Resort",
@@ -112,7 +100,6 @@ Lodging.create(
   likes: 0,
   vacation_id: 4
 )
-
  # Vacation 4 (Orlando, FL)
  Lodging.create(
   name: "Disney's Art of Animation",
@@ -127,7 +114,6 @@ Lodging.create(
 
 
 puts "✈ Lodging created"
-
 # Food data
   # Vacation 1 (Columbus, OH)
   10.times do
@@ -143,7 +129,6 @@ puts "✈ Lodging created"
       vacation_id: 1
     )
   end
-
   # Vacation 2 (Las Vegas, NV)
   16.times do
     name = Faker::Restaurant.name
@@ -158,7 +143,6 @@ puts "✈ Lodging created"
       vacation_id: 2
     )
   end
-
     # Vacation 3 (Maui, HI)
     15.times do
       name = Faker::Restaurant.name
@@ -173,7 +157,6 @@ puts "✈ Lodging created"
         vacation_id: 3
       )
   end
-
     # Vacation 4 (Orlando, FL)
     12.times do
       name = Faker::Restaurant.name
@@ -188,9 +171,7 @@ puts "✈ Lodging created"
         vacation_id: 4
       )
   end
-
 puts "✈ Food created"
-
 # Activity data
   # Vacation 1 (Columbus, OH)
   7.times do
@@ -206,7 +187,6 @@ puts "✈ Food created"
       vacation_id: 1
     )
   end
-
   # Vacation 2 (Las Vegas, NV)
   12.times do
     vendor = Faker::Company.name
@@ -221,7 +201,6 @@ puts "✈ Food created"
       vacation_id: 2
     )
   end
-
   # Vacation 3 (Maui, HI)
   9.times do
     vendor = Faker::Company.name
@@ -236,7 +215,6 @@ puts "✈ Food created"
       vacation_id: 3
     )
   end
-
     # Vacation 4 (Orlando, FL)
     9.times do
       vendor = Faker::Company.name
@@ -251,9 +229,7 @@ puts "✈ Food created"
         vacation_id: 4
       )
     end
-
 puts "✈ Activities created"
-
 # User data
 10.times do
   fakeName = Faker::Name.unique.first_name
@@ -263,9 +239,7 @@ puts "✈ Activities created"
     password: "1234"
   )
 end
-
 puts "✈ Users created"
-
 # Vacation_User data
   # Vacation 1 (3 users)
   
@@ -275,7 +249,6 @@ puts "✈ Users created"
       vacation_id: 1
     )
   end
-
   # Vacation 2 (3 users)
   3.times do
     VacationUser.create(
@@ -283,7 +256,6 @@ puts "✈ Users created"
       vacation_id: 2
     )
   end
-
   # Vacation 3 (4 users)
   4.times do
     VacationUser.create(
@@ -299,7 +271,12 @@ puts "✈ Users created"
         vacation_id: 4
     )
   end
-
+    # Vacation 3 (4 users)
+  5.times do
+      VacationUser.create(
+        user_id: rand(1..10),
+        vacation_id: 4
+    )
+  end
 puts "✈ Vacation_Users created"
-
 puts "✈✈✈✈✈ Done seeding! ✈✈✈✈✈"
