@@ -19,7 +19,7 @@
           align-items: center;
 
           .logo {
-              font-size: 20px;
+              font-size: 30px;
               font-weight: 700;
               text-decoration: none;
               // inherits the color from parent component
@@ -27,19 +27,19 @@
           }
       }
 
-      .right {
+        .right {
           display: flex;
           align-items: center;
 
 
-          .navlink{
-              font-family: 'IBM Plex Sans', sans-serif;
-              font-size: 20px;
-              font-weight: 700;
-              text-decoration: none;
-              margin-right: 40px
-          }
-      }
+            .navlink{
+                font-family: 'IBM Plex Sans', sans-serif;
+                font-size: 20px;
+                font-weight: 700;
+                text-decoration: none;
+                margin-right: 40px
+            }
+        }
 
 
   }

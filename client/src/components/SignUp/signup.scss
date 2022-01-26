@@ -1,29 +1,2 @@
 @import "../../global.scss";
 
-
-.ant-btn {
-    background: transparent !important;
-    border: 1px solid black !important;
-}
-  
-.ant-modal-header {
-background-color: $mainbackground;
-
-}
-  
-.ant-modal-title {
-color: white !important;
-}
-  
-.ant-layout-header {
-background-color: $mainbackground
-}
-  
-.ant-layout-header h1{
-font-family: $mainfont;
-color: white;
-}
-  
-.ant-layout {
-min-height: 94vh !important;
-}

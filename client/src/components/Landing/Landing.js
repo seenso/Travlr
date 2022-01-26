@@ -1,19 +1,27 @@
+import React from "react";
+import { Row, Col } from "react-bootstrap";
 import Login from '../Login/Login';
 import SignUp from '../SignUp/SignUp';
-import { Col } from 'react-bootstrap';
 
+import "./landing.scss"
 
 export default function Landing( { onLogin }) {
 
     return (
         <>
-            <div className="container" id="landing">
-                <img src="https://e7.pngegg.com/pngimages/386/732/png-clipart-airplane-aircraft-logo-airplane-blue-logo-thumbnail.png" alt="landing" />
-                <h1 className="title">TRAVLR</h1>
-                <p>Vacations made easy!</p>
-                <Col>
-                    <Login onLogin={onLogin}/>
-                    <SignUp onLogin={onLogin}/>
+            <div className="landing-container" id="landing">
+                <Col className="column">
+                    <Row>
+                        {/* <img src="" alt="landing" /> */}
+                        <h1 className="landing-title">TRAVLR</h1>
+                        <h2>Vacations made easy!</h2>
+                    </Row>
+                    <Row>
+                        <div className="landing-buttons">
+                            <Login onLogin={onLogin}/>
+                            <SignUp onLogin={onLogin}/>
+                        </div>
+                    </Row>
                 </Col>
             </div>
         </>

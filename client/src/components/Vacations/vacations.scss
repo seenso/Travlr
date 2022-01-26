@@ -1,7 +1,28 @@
-.vacations {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: flex-start;
+@import "../../global.scss";
+
+
+.vacation-card {
+  font-family: $mainfont;
+  width: 400px;
+  height: auto; 
+  border-radius: 5px;
+  border: 2px solid $secondarycolor;
+  padding: 30px;
+  border-style: solid;
+  font-weight: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+  
 }
+
+.info {
+  // background-color: #748CAB;
+  color: black;
+}
+
+.title {
+// background-color: #748CAB;
+color: black;
+}
+
+  
