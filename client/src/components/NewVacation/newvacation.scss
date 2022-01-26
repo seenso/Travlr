@@ -1,7 +1,9 @@
-.new-vacay-container{
-    width: 100%;   
-    background-color: lightblue;
-    position: fixed;
-    margin-top: 70px;
+@import "../../global.scss";
 
+.new-vacay-container{
+    width: 50%;   
+    padding: 10px;
+    // position: fixed;
+    margin-top: 70px;
+    border-style: solid;
 }
