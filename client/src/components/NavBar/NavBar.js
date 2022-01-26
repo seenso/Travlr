@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import "./navbar.scss"
 
 
-export default function NavBar( {setUser} ) {
+export default function NavBar( {setUser, setBody} ) {
 
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
@@ -11,6 +11,10 @@ export default function NavBar( {setUser} ) {
         setUser(null);
       }
     });
+  }
+
+  function handleClick (){
+    setBody("vacations")
   }
   
   return (
@@ -21,7 +25,7 @@ export default function NavBar( {setUser} ) {
               </div>
               <div className="right">
                 <Link className="navlink" to="/new"><span>ADD VACATION</span></Link>
-                <Link className="navlink" to="/vacations"><span>MY VACATIONS</span></Link> 
+                <Link className="navlink" to="/vacations" onClick={handleClick}><span>MY VACATIONS</span></Link> 
                 <div className="navlink" onClick={handleLogoutClick}>LOG OUT</div>
               </div>
         </div>
