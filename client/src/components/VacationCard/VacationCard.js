@@ -7,7 +7,7 @@ import "./vacationcard.scss"
 
 export default function VacationCard({body, vacation, handleDelete, handleClick, buttonText}) {
   
-  console.log(vacation.lodgings)
+  console.log(vacation)
   return (
     <nav className="vacation-container">
           {body === "deleted" ? 
@@ -48,7 +48,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
               <tr>
                 {vacation.lodgings && body === "card" ? <th scope="col">Where to Stay</th> : null}
                 {vacation.foods && body === "card" ? <th scope="col">Places to Eat</th> : null}
-                {vacation.foods && body === "card" ? <th scope="col">What to Do</th> : null}
+                {vacation.activities && body === "card" ? <th scope="col">What to Do</th> : null}
               </tr>
             </thead>
             <tbody>
@@ -61,9 +61,9 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                 }
                 </td>
                 <td>
-                 {vacation.lodgings && body === "card" ?
-                vacation.lodgings.map((place)=> 
-                <OptionsCard option={place} key={place.id}/>)
+                 {vacation.foods && body === "card" ?
+                vacation.foods.map((f)=> 
+                <OptionsCard option={f} key={f.id}/>)
                 : null            
                 }
                 </td>
