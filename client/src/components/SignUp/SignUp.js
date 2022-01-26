@@ -1,23 +1,15 @@
-import { useState } from 'react';
+import React, { useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export default function SignUp( {onLogin}) {
-    const [signUpVisible, setSignUpVisible] = useState(false)
-    const [username, setUserName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [modalShow, setModalShow] = React.useState(false);
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-
-
-    function showSignUp() {
-        // console.log("SHOW")
-        setSignUpVisible(true)
-    }
-
-
-    function handleClose() {
-        setSignUpVisible(false)
-    }
+    let username
+    let email
+    let password
   
     function handleSubmit(e) {
         e.preventDefault();
@@ -44,57 +36,96 @@ export default function SignUp( {onLogin}) {
             })
         }});
     }
-    
-    return (
-        <>
-            <button onClick={showSignUp}>Create New Account</button>
-            {showSignUp &&
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label>User Name</label>
-                        <input 
-                            type="username" 
-                            className="form-control" 
-                            id="username-input" 
-                            placeholder="Enter User Name" 
-                            value={username}
-                            onChange={(e) => setUserName(e.target.value)}
-                            autoComplete="off"
-                        ></input>
-                    </div>
-                    <div className="form-group">
-                        <label>Email</label>
+
+    function handleSetName(e){
+        e.preventDefault();
+        username = e.target.value
+    }
+
+    function handleSetEmail(e){
+        e.preventDefault();
+        email = e.target.value
+    }
+
+    function handleSetPassword(e){
+        e.preventDefault();
+        password = e.target.value
+    }
+
+    function MyVerticallyCenteredModal(props) {
+        return (
+            <Modal
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                Welcome!
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                    <Form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label>User Name*</label>
+                            <input 
+                                type="username" 
+                                className="form-control" 
+                                id="username-input" 
+                                placeholder="Enter User Name" 
+                                onChange={handleSetName}
+                                autoComplete="off"
+                            ></input>
+                        </div>
+                        <div className="form-group">
+                        <label>Email*</label>
                         <input 
                             type="email" 
                             className="form-control" 
                             id="email-input" 
                             placeholder="Enter Email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            onChange={handleSetEmail}
                         ></input>
-                    </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input 
-                            type="password" 
-                            className="form-control" 
-                            id="password-input" 
-                            placeholder="Password"
-                            autoComplete="current-password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        ></input>
-                    </div>
-                    <div>
-                        <button type="submit">{isLoading ? "Loading..." : "Sign Up"}</button>
-                    </div>
-                    <div>
-                        {errors.map((err) => (
-                        <div key={err}>{err}</div>
-                        ))}
-                    </div>
-                </form>
-            }
+                        </div>
+                        <div className="form-group">
+                            <label>Password*</label>
+                            <input 
+                                type="password" 
+                                className="form-control" 
+                                id="password-input" 
+                                placeholder="Password"
+                                autoComplete="current-password"
+                                onChange={handleSetPassword}
+                            ></input>
+                        </div>
+                        <div>
+                            <button type="submit">{isLoading ? "Loading..." : "Log In"}</button>
+                        </div>
+                        <div>
+                            {errors.map((err) => (
+                                <div key={err}>{err}</div>
+                            ))}
+                        </div>
+                    </Form>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer>
+            </Modal>
+        );
+    }
+    
+    return (
+        <>
+            <Button variant="primary" onClick={() => setModalShow(true)}>
+                Sign Up
+            </Button>
+
+            <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
         </>
     )
 }
