@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -41,21 +43,21 @@ export default function NewVacation( { user }) {
     <Form className="new-vacations">
       <Form.Group className="container">
         <div className="form-group">
-          <h1 className="exampleFormControlInput1">Vacation Name*</h1>
+          <h1 className="new-vacation-text">Vacation Name*</h1>
           <input 
             className="input-form" 
             placeholder="What's the occation?"
           />
         </div>
         <div className="form-group">
-          <h1 clasName="exampleFormControlInput1">Location*</h1>
+          <h1 clasName="new-vacation-text">Location*</h1>
           <input 
             className="input-form" 
             placeholder="Where are you going?"
           />
         </div>
         <div className="form-group">
-          <h1 className="participants-title">Participants*</h1>
+          <h1 className="new-vacation-text">Participants*</h1>
           <input 
             className="input-form" 
             placeholder="Who's coming with?"
@@ -72,7 +74,10 @@ export default function NewVacation( { user }) {
           }}
           isClearable={true}
         />
-        <button className="submit-btn">Submit</button>
+        <Button 
+          className="button"
+          style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+        >Submit</Button>
       </Form.Group>
     </Form>
   );

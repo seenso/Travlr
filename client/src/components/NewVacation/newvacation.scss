@@ -2,22 +2,35 @@
 
 
 .new-vacations{
+    font-family: $mainfont;
     position: fixed;
     display: flex;
-    justify-content: center;
-    align-items: center;
     margin-top: 70px;
-    padding: 20px 20px 20px;
+    padding: 20px 10px 20px;
     border: 2px solid $secondarycolor;
+    border-radius: 5px;
+
+    position: fixed;
+    top: 35%;
+    left: 50%;
+    // -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    
 
     
     .container{
-        justify-content: center;
-        align-items: center;
+        justify-content: left;
         flex-direction: column;
         
+        
         h1{
-            font-size: 30px;
+            font-size: 20px;
+            font-weight: 700;
         }
+
+        input{
+            width: 100%;
+        } 
+    
     }
 }
