@@ -4,21 +4,26 @@ import DashBoard from './components/DashBoard/DashBoard';
 import "./app.scss"
 
 export default function App() {
-  const [user, setUser] = useState(null)
-  const [userList, setUserList] = useState(null)
+  const [user, setUser] = useState({ username:"", email:"" , vacations:[]})
+  const [userList, setUserList] = useState([])
   const [vacation, setVacation] = useState(null)
+  const [isLoading, setIsLoading] = useState(false);
 
 
   useEffect(() => {
     // auto-login
+    setIsLoading(true)
     fetch("/me").then((r) => {
-      // console.log(r)
       if (r.ok) {
         r.json().then((user) => setUser(user));
+        setIsLoading(false)
+      } else {
+        setIsLoading(false)
       }
     });
   }, []);
 
+  
   useEffect(() => {
     fetch("/users").then((r) => {
       // console.log(r)
@@ -41,7 +46,7 @@ export default function App() {
 
 
 
-  if (!user) return (
+  if (!user && !isLoading) return (
     <div className="App">
       <Landing onLogin={setUser} />
     </div>

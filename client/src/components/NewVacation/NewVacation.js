@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
+import { Row } from 'react-bootstrap';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import NumberPicker from "react-widgets/NumberPicker";
+import "react-widgets/styles.css";
 
 import Select from 'react-select'
 import "./newvacation.scss"
-
 
 export default function NewVacation( { user, userList, setUserList, participants, setParticipants, vacation, setVacation }) {
   const [title, setTitle] = useState("")
@@ -14,9 +16,9 @@ export default function NewVacation( { user, userList, setUserList, participants
   const [estimated_budget, setEstimated_Budget] = useState("")
   const [dateRange, setDateRange] = useState([null, null])
   const [startDate, endDate] = dateRange;
+  const [number_of_food, setNumber_of_food] = useState(0)
+  const [number_of_activities, setNumber_of_activities] = useState(0)
   const [errors, setErrors] = useState([]);
-
-  // console.log("PARTICIPANTS IN NEW VACATION", participants) // gave arr of [] of obj w participants. username = participant.value
 
   function handleSubmit(e) {
     console.log("E IN HANDLESUBMIT IN NEWVACATION", e)
@@ -33,9 +35,9 @@ export default function NewVacation( { user, userList, setUserList, participants
             end_date: endDate,
             location,
             estimated_budget,
-            number_of_food: 0,
-            number_of_activities: 0
-        })
+            number_of_food,
+            number_of_activities,
+        }),
     })
     .then((r)=>{
         if (r.ok) {
@@ -59,6 +61,7 @@ export default function NewVacation( { user, userList, setUserList, participants
           r.json().then((err) => setErrors(err.errors));
         }
     })
+    // e.target.reset()
   }
 
   const createOptions = () => {
@@ -72,7 +75,7 @@ export default function NewVacation( { user, userList, setUserList, participants
  
   return (
     <Form className="new-vacations" onSubmit={handleSubmit}>
-      <Form.Group className="container">
+      <Form.Group className="vacation-container">
         <div className="form-group">
           <h1 className="new-vacation-text">Vacation Name*</h1>
           <input 
@@ -91,11 +94,32 @@ export default function NewVacation( { user, userList, setUserList, participants
             onChange={(e) => setLocation(e.target.value)}
           />
         </div>
+        <div className="number-group">
+          <Row>
+            <h1>How Many Do You Want To Visit?</h1>
+            <div className="number-left">
+              <h5 className="new-vacation-text">Food*</h5>
+              <NumberPicker
+                  className="number-picker"
+                  value={number_of_food}
+                  onChange={value => setNumber_of_food(value)}
+                />
+            </div>
+            <div className="number-right">
+                <h5 className="new-vacation-text">Activities*</h5>
+                <NumberPicker
+                  className="number-picker"
+                  value={number_of_activities}
+                  onChange={value => setNumber_of_activities(value)}
+                />
+            </div>
+            </Row>
+        </div>
         <div className="form-group">
           <h1 className="new-vacation-text">Estimated Budget*</h1>
           <input 
             className="input-form" 
-            placeholder="Where are you going?"
+            placeholder="Per person budget?"
             value={estimated_budget}
             onChange={(e) => setEstimated_Budget(e.target.value)}
           />
@@ -106,6 +130,7 @@ export default function NewVacation( { user, userList, setUserList, participants
             isMulti 
             className="basic-multi-select"
             classNamePrefix="select"
+            // defaultValue={}
             value={participants}
             options={createOptions()} 
             onChange={handleOnChange}

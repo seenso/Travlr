@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import VacationCard from "../VacationCard/VacationCard";
 import { Row } from 'react-bootstrap';
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import "./vacations.scss"
 
 export default function Vacations({user, body, setBody, participants, vacation}) {
-  	const [vacationCard, setVacationCard] = useState("");
+  const [vacationCard, setVacationCard] = useState("");
 
   // This deletes a VacationUser instance that has the @current_user.id and the clicked vacation's id. This does not re-render all vacations. The page needs to be reset, then user is taken back to the login page. Once logged back in, changes will show.
   function handleDelete (e) {

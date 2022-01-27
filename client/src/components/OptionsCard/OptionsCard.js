@@ -1,5 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
+import Button from "react-bootstrap/Button";
+
 
 import "./optionscard.scss"
 
@@ -36,8 +38,18 @@ export default function OptionsCard({option}) {
             </div> 
             <div className="row align-items-start" id="clickers">
                 <div className="col">
-                  <button onClick={handleClick} className="button" id={option.id}>Edit Food</button>
-                  <button onClick={handleDelete} className="button" id={option.id}>Delete Food</button>
+                  <Button 
+                    onClick={handleClick} 
+                    className="button" 
+                    id={option.id}
+                    style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                  >Edit Food</Button>
+                  <Button 
+                    onClick={handleDelete} 
+                    className="button" 
+                    id={option.id}
+                    style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                  >Delete Food</Button>
                 </div>
             </div>
           </div>

@@ -9,28 +9,66 @@
     padding: 20px 10px 20px;
     border: 2px solid $secondarycolor;
     border-radius: 5px;
+    width: 550px;
+
 
     position: fixed;
-    top: 35%;
+    top: 30%;
     left: 50%;
-    // -webkit-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     
 
     
-    .container{
+    .vacation-container{
         justify-content: left;
         flex-direction: column;
+        padding-left: 10px;
         
         
         h1{
+            font-family: $mainfont;
             font-size: 20px;
             font-weight: 700;
+            padding-top: 5px;
+        }
+
+        h5{
+            font-family: $mainfont;
+            font-size: 15px;
+            font-weight: 700;
+            font-style: italic;
         }
 
         input{
-            width: 100%;
+            width: 450px;
         } 
+
+        .basic-multi-select{ 
+            width: 450px;
+        }
+
+        .number-group{
+            display: flex;
+            width: 400px;
+
+            .number-left{
+                flex: 0.5;
+                width: 15%;
+            }
+
+            .number-right{
+                flex: 0.5;
+                width: 15%;
+            }
+
+            .number-picker{
+                display: flex;
+            }
+        }
+        
+
+
     
     }
 }
