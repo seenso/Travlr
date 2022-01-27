@@ -16,6 +16,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
   const [isLoading, setIsLoading] = useState(false);
   const [lodging, setLodging] = useState(null)
   const [foods, setFoods] = useState(null)
+  const [activity, setActivity] = useState(null)
 
 
   let lodgingName
@@ -32,6 +33,12 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
   let foodDesc
   let foodEstimatedCost
 
+  let activityName
+  let activityAddress
+  let activityUrl
+  let activityHours
+  let activityDesc
+  let activityEstimatedCost
 
   function handleSubmitLodging(e) {
       e.preventDefault();
@@ -182,7 +189,6 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
     );
   }
 
-
   function handleSubmitFood(e) {
     e.preventDefault();
     setIsLoading(true);
@@ -227,7 +233,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
   }
   function handleSetFoodCost(e){
     e.preventDefault();
-    handleSetFoodCost = e.target.value
+    foodEstimatedCost = e.target.value
   }
   function AddFoodModal(props) {
     return (
@@ -278,7 +284,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                         ></input>
                     </div>
                     <div className="form-group">
-                        <label>Check-In Time*</label>
+                        <label>Hours*</label>
                         <input 
                             type="foodhours" 
                             className="form-control" 
@@ -297,6 +303,141 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             placeholder="$0"
                             autoComplete="off"
                             onChange={handleSetFoodCost}
+                        ></input>
+                    </div>
+                    <div>
+                        <Button 
+                            style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                            type="submit"
+                        >{isLoading ? "Loading..." : "Submit"}
+                        </Button>
+                    </div>
+                    <div>
+                        {errors.map((err) => (
+                            <div key={err}>{err}</div>
+                        ))}
+                    </div>
+                </Form>
+        </Modal.Body>
+        </Modal>
+    );
+  }
+
+
+  function handleSubmitActivity(e) {
+    e.preventDefault();
+    setIsLoading(true);
+    fetch("/activity", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        name: activityName,
+        address: activityAddress,
+        url: activityUrl,
+        hours: activityHours,
+        desc: activityDesc,
+        estimated_cost: activityEstimatedCost,
+        likes: 0
+        }),
+    }).then((r) => {
+      setIsLoading(false);
+      if (r.ok) {
+        r.json().then((activity) => setActivity(activity));
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
+  }
+  function handleSetActivityName(e){
+    e.preventDefault();
+    activityName = e.target.value
+  }
+  function handleSetActivityAddress(e){
+    e.preventDefault();
+    activityAddress = e.target.value
+  }
+  function handleSetActivityUrl(e){
+    e.preventDefault();
+    activityUrl = e.target.value
+  }
+  function handleSetActivityHours(e){
+    e.preventDefault();
+    activityHours = e.target.value
+  }
+  function handleSetActivityCost(e){
+    e.preventDefault();
+    activityEstimatedCost = e.target.value
+  }
+  function AddActivityModal(props) {
+    return (
+        <Modal
+            {...props}
+            size="m"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+        <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+            New Activity Info:
+            </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+                <Form onSubmit={handleSubmitActivity}>
+                    <div className="form-group">
+                        <label>Name*</label>
+                        <input 
+                            type="activityname" 
+                            className="form-control" 
+                            id="activityname-input" 
+                            placeholder="Enter name..." 
+                            onChange={handleSetActivityName}
+                            autoComplete="off"
+                        ></input>
+                    </div>
+                    <div className="form-group">
+                        <label>Address*</label>
+                        <input 
+                            type="address" 
+                            className="form-control" 
+                            id="address-input" 
+                            placeholder="Enter address..."
+                            autoComplete="off"
+                            onChange={handleSetActivityAddress}
+                        ></input>
+                    </div>
+                    <div className="form-group">
+                        <label>Website*</label>
+                        <input 
+                            type="url" 
+                            className="form-control" 
+                            id="url-input" 
+                            placeholder="Enter Website..."
+                            autoComplete="off"
+                            onChange={handleSetActivityUrl}
+                        ></input>
+                    </div>
+                    <div className="form-group">
+                        <label>Hours*</label>
+                        <input 
+                            type="activityhours" 
+                            className="form-control" 
+                            id="activityhours-input" 
+                            placeholder="00:00AM - 00:00PM"
+                            autoComplete="off"
+                            onChange={handleSetActivityHours}
+                        ></input>
+                    </div>
+                    <div className="form-group">
+                        <label>Estimated Cost*</label>
+                        <input 
+                            type="cost" 
+                            className="form-control" 
+                            id="cost-input" 
+                            placeholder="$0"
+                            autoComplete="off"
+                            onChange={handleSetActivityCost}
                         ></input>
                     </div>
                     <div>
@@ -392,10 +533,14 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                 {vacation.activities && body === "card" ? <th scope="col">
                   <h5>What to do</h5>
                   <Button 
-                        onClick={activityModalShow} 
                         className="button" 
                         style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                        onClick={() => setActivityModalShow(true)} 
                   >Add Activity</Button>
+                  <AddActivityModal
+                    show={activityModalShow}
+                    onHide={() => setActivityModalShow(false)}
+                  />
                 </th> : null}
               </tr>
             </thead>
