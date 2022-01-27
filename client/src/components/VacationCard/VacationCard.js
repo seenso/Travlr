@@ -1,13 +1,179 @@
-import React from 'react';
+import React, { useState } from "react";
 import OptionsCard from "../OptionsCard/OptionsCard";
-import { useState } from 'react';
+import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-
+import Form from "react-bootstrap/Form";
 
 import "./vacationcard.scss"
 
 
 export default function VacationCard({body, vacation, handleDelete, handleClick, buttonText}) {
+  const [lodgingModalShow, setLodginglodgingModalShow] = React.useState(false);
+  const [foodModalShow, setFoodModalShow] = React.useState(false);
+  const [activityModalShow, setActivityModalShow] = React.useState(false);
+
+  const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [lodging, setLodging] = useState(null)
+
+  let lodgingName
+  let lodgingAddress
+  let lodgingUrl
+  let check_in
+  let check_out
+  let lodgingEstimatedCost
+
+
+  function handleSubmitLodging(e) {
+      e.preventDefault();
+      setIsLoading(true);
+      fetch("/lodgings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          name: lodgingName,
+          address: lodgingAddress,
+          url: lodgingUrl,
+          check_in,
+          check_out,
+          estimated_cost: lodgingEstimatedCost,
+          likes: 0
+          }),
+      }).then((r) => {
+        setIsLoading(false);
+        if (r.ok) {
+          r.json().then((lodging) => setLodging(lodging));
+        } else {
+          r.json().then((err) => setErrors(err.errors));
+        }
+      });
+  }
+
+  function handleSetLodgingName(e){
+    e.preventDefault();
+    lodgingName = e.target.value
+  }
+  function handleSetLodgingAddress(e){
+    e.preventDefault();
+    lodgingAddress = e.target.value
+  }
+  function handleSetLodgingUrl(e){
+    e.preventDefault();
+    lodgingUrl = e.target.value
+  }
+  function handleSetLodgingCheckin(e){
+    e.preventDefault();
+    check_in = e.target.value
+  }
+  function handleSetLodgingCheckout(e){
+    e.preventDefault();
+    check_out = e.target.value
+  }
+  function handleSetLodgingCost(e){
+    e.preventDefault();
+    lodgingEstimatedCost = e.target.value
+  }
+
+function AddLodgingModal(props) {
+  return (
+      <Modal
+          {...props}
+          size="m"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+      >
+      <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+          New Lodging Info:
+          </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+              <Form onSubmit={handleSubmitLodging}>
+                  <div className="form-group">
+                      <label>Name*</label>
+                      <input 
+                          type="lodgingname" 
+                          className="form-control" 
+                          id="lodgingname-input" 
+                          placeholder="Enter name..." 
+                          onChange={handleSetLodgingName}
+                          autoComplete="off"
+                      ></input>
+                  </div>
+                  <div className="form-group">
+                      <label>Address*</label>
+                      <input 
+                          type="address" 
+                          className="form-control" 
+                          id="address-input" 
+                          placeholder="Enter address..."
+                          autoComplete="off"
+                          onChange={handleSetLodgingAddress}
+                      ></input>
+                  </div>
+                  <div className="form-group">
+                      <label>Website*</label>
+                      <input 
+                          type="url" 
+                          className="form-control" 
+                          id="url-input" 
+                          placeholder="Enter Website..."
+                          autoComplete="off"
+                          onChange={handleSetLodgingUrl}
+                      ></input>
+                  </div>
+                  <div className="form-group">
+                      <label>Check-In Time*</label>
+                      <input 
+                          type="checkin" 
+                          className="form-control" 
+                          id="checkin-input" 
+                          placeholder="00:00AM"
+                          autoComplete="off"
+                          onChange={handleSetLodgingCheckin}
+                      ></input>
+                  </div>
+                  <div className="form-group">
+                      <label>Check-Out Time*</label>
+                      <input 
+                          type="checkin" 
+                          className="form-control" 
+                          id="checkin-input" 
+                          placeholder="00:00PM"
+                          autoComplete="off"
+                          onChange={handleSetLodgingCheckout}
+                      ></input>
+                  </div>
+                  <div className="form-group">
+                      <label>Estimated Cost*</label>
+                      <input 
+                          type="cost" 
+                          className="form-control" 
+                          id="cost-input" 
+                          placeholder="$0"
+                          autoComplete="off"
+                          onChange={handleSetLodgingCost}
+                      ></input>
+                  </div>
+                  <div>
+                      <Button 
+                          style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                          type="submit"
+                      >{isLoading ? "Loading..." : "Submit"}
+                      </Button>
+                  </div>
+                  <div>
+                      {errors.map((err) => (
+                          <div key={err}>{err}</div>
+                      ))}
+                  </div>
+              </Form>
+      </Modal.Body>
+      </Modal>
+  );
+}
   
   console.log(vacation)
   return (
@@ -61,15 +227,19 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                 {vacation.lodgings && body === "card" ? <th scope="col">
                   <h5>Where To Stay</h5>
                   <Button 
-                        onClick={handleDelete} 
-                        className="button" 
-                        style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                    className="button" 
+                    style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                    onClick={() => setLodginglodgingModalShow(true)} 
                   >Add Lodging</Button>
+                  <AddLodgingModal
+                    show={lodgingModalShow}
+                    onHide={() => setLodginglodgingModalShow(false)}
+                  />
                   </th> : null}
                 {vacation.foods && body === "card" ? <th scope="col">
                   <h5>Where To Eat</h5>
                   <Button 
-                        onClick={handleDelete} 
+                        onClick={foodModalShow} 
                         className="button" 
                         style={{ backgroundColor: "#3E5C76", margin: "1%"}}
                   >Add Food</Button>
@@ -77,7 +247,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                 {vacation.activities && body === "card" ? <th scope="col">
                   <h5>What to do</h5>
                   <Button 
-                        onClick={handleDelete} 
+                        onClick={activityModalShow} 
                         className="button" 
                         style={{ backgroundColor: "#3E5C76", margin: "1%"}}
                   >Add Activity</Button>

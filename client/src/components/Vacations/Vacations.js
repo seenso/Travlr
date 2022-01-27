@@ -3,6 +3,8 @@ import VacationCard from "../VacationCard/VacationCard";
 import { useState } from 'react';
 import { Row } from 'react-bootstrap';
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
 
 import "./vacations.scss"
 
