@@ -58,9 +58,30 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
           <table className="table" id="render-options">
             <thead>
               <tr>
-                {vacation.lodgings && body === "card" ? <th scope="col">Where to Stay</th> : null}
-                {vacation.foods && body === "card" ? <th scope="col">Places to Eat</th> : null}
-                {vacation.activities && body === "card" ? <th scope="col">What to Do</th> : null}
+                {vacation.lodgings && body === "card" ? <th scope="col">
+                  <h5>Where To Stay</h5>
+                  <Button 
+                        onClick={handleDelete} 
+                        className="button" 
+                        style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                  >Add Lodging</Button>
+                  </th> : null}
+                {vacation.foods && body === "card" ? <th scope="col">
+                  <h5>Where To Eat</h5>
+                  <Button 
+                        onClick={handleDelete} 
+                        className="button" 
+                        style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                  >Add Food</Button>
+                </th> : null}
+                {vacation.activities && body === "card" ? <th scope="col">
+                  <h5>What to do</h5>
+                  <Button 
+                        onClick={handleDelete} 
+                        className="button" 
+                        style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                  >Add Activity</Button>
+                </th> : null}
               </tr>
             </thead>
             <tbody>
