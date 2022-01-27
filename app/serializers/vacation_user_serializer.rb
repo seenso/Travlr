@@ -1,5 +1,5 @@
 class VacationUserSerializer < ActiveModel::Serializer
-  attributes :id, :vacation_id, :user_id
+  attributes :id
   has_one :user
   has_one :vacation
 end
