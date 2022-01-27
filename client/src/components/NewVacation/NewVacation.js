@@ -8,15 +8,14 @@ import Select from 'react-select'
 import "./newvacation.scss"
 
 
-export default function NewVacation( { user, userList, setUserList }) {
+export default function NewVacation( { user, userList, setUserList, participants, setParticipants, vacation, setVacation }) {
   const [title, setTitle] = useState("")
   const [location, setLocation] = useState("")
-  const [vacation, setVacation] = useState("")
   const [estimated_budget, setEstimated_Budget] = useState("")
   const [dateRange, setDateRange] = useState([null, null])
   const [startDate, endDate] = dateRange;
   const [errors, setErrors] = useState([]);
-  const [participants, setParticipants] = useState([])
+  // const [participants, setParticipants] = useState([])
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -36,7 +35,7 @@ export default function NewVacation( { user, userList, setUserList }) {
         }),
     })
     .then((r)=>{
-        // console.log(r)
+        // console.log("R in handleSubmit in NewVacation", r)
         if (r.ok) {
           r.json().then((vacation) => handleOtherSubmit(vacation));
         } else {
@@ -46,6 +45,7 @@ export default function NewVacation( { user, userList, setUserList }) {
   }
 
   function handleOtherSubmit(vacation){
+    console.log("Participants in handleOtherSubmit in NewVacation", participants)
     participants.map((v) =>{
       fetch("/vacation_users", {
         method: "POST",
@@ -59,6 +59,7 @@ export default function NewVacation( { user, userList, setUserList }) {
       })
     })
     setVacation(vacation)
+    console.log("VACAY in HandleOtherSubmit in NewVacation", vacation)
   }
 
   const createOptions = () => {
@@ -66,6 +67,7 @@ export default function NewVacation( { user, userList, setUserList }) {
   }
 
   const handleOnChange = e => {
+    console.log("E IN handleOnChange in NewVacation", e)
     setParticipants(Array.isArray(e) ? e : [])
   };
  

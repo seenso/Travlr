@@ -1,6 +1,10 @@
 class VacationUsersController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
+    def index
+        render json: VacationUser.all
+    end
+
     def create
         vacationUser = VacationUser.create!(vacationUser_params)
         render json: vacationUser, status: :created

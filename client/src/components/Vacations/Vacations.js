@@ -6,8 +6,9 @@ import Button from "react-bootstrap/Button";
 
 import "./vacations.scss"
 
-export default function Vacations({user, body, setBody}) {
-const [vacationCard, setVacationCard] = useState("");
+export default function Vacations({user, body, setBody, participants, vacation}) {
+  	const [vacationCard, setVacationCard] = useState("");
+
 
   // This deletes a VacationUser instance that has the @current_user.id and the clicked vacation's id. This does not re-render all vacations. The page needs to be reset, then user is taken back to the login page. Once logged back in, changes will show.
   function handleDelete (e) {
@@ -43,7 +44,8 @@ const [vacationCard, setVacationCard] = useState("");
               user.vacations.map((v)=> 
                 <VacationCard body={body} setBody={setBody} vacation={v} handleDelete={handleDelete} handleClick={seePlans} buttonText={"See Plans"} key={v.title}/>
               ) : 
-                <VacationCard body={body} setBody={setBody} vacation={vacationCard} handleDelete={handleDelete} buttonText={"Return to All Vacations"} handleClick={returnToVacations}/>
+                <VacationCard body={body} setBody={setBody} vacation={vacationCard} handleDelete={handleDelete} buttonText={"Return to All Vacations"} handleClick={returnToVacations}  participants={participants}
+                />
                 }
       </nav>
   );

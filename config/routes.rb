@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :activities, only:[:index, :create, :update, :destroy] #no show
   resources :foods, only:[:index, :create, :update, :destroy] #no show
   resources :lodgings, only:[:index, :create, :update, :destroy] #no show
-  resources :vacation_users, only:[:create, :destroy] 
+  resources :vacation_users, only:[:index, :create, :destroy] 
   resources :vacations #all routes
   resources :users #all routes
 

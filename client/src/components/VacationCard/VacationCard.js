@@ -5,9 +5,14 @@ import { useState } from 'react';
 import "./vacationcard.scss"
 
 
-export default function VacationCard({body, vacation, handleDelete, handleClick, buttonText}) {
+export default function VacationCard({body, vacation, handleDelete, handleClick, buttonText, setParticipants, participants}) {
   
-  console.log(vacation)
+  // console.log("Vacation in VacationCard", vacation)
+  // console.log("Participants in VacationCard", participants)
+
+  function addParticipant() {
+    console.log('addParticipant has been invoked in VacationCard!!!!!');
+  }
   return (
     <nav className="vacation-container">
           {body === "deleted" ? 
@@ -32,13 +37,14 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                 </div> 
                 <div className="row" >
                     <div className="col">
-                        Participants:
+                        Participants: 
                     </div>
                   </div>
                 <div className="row align-items-start" id="clickers">
                     <div className="col">
                       <button onClick={handleClick} className="button" id={vacation.id}>{buttonText}</button>
                       <button onClick={handleDelete} className="button" id={vacation.id}>Remove from Vacations</button>
+                      <button onClick={addParticipant} className="button" id={vacation.id}>Add Participant</button>
                     </div>
                 </div>
               </div>
