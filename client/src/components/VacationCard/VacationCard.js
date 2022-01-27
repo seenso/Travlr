@@ -1,6 +1,8 @@
 import React from 'react';
 import OptionsCard from "../OptionsCard/OptionsCard";
 import { useState } from 'react';
+import Button from "react-bootstrap/Button";
+
 
 import "./vacationcard.scss"
 
@@ -37,8 +39,18 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                   </div>
                 <div className="row align-items-start" id="clickers">
                     <div className="col">
-                      <button onClick={handleClick} className="button" id={vacation.id}>{buttonText}</button>
-                      <button onClick={handleDelete} className="button" id={vacation.id}>Remove from Vacations</button>
+                      <Button 
+                        onClick={handleClick} 
+                        className="button" 
+                        id={vacation.id}
+                        style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                      >{buttonText}</Button>
+                      <Button 
+                        onClick={handleDelete} 
+                        className="button" 
+                        id={vacation.id}
+                        style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                      >Remove from Vacations</Button>
                     </div>
                 </div>
               </div>
