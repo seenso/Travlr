@@ -17,7 +17,6 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
   const [foods, setFoods] = useState(null)
   const [activity, setActivity] = useState(null)
 
-
   let lodgingName
   let lodgingAddress
   let lodgingUrl
@@ -456,6 +455,8 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
         </Modal>
     );
   }
+
+  
   
   return (
     <nav className="vacation-container">
@@ -481,10 +482,10 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                 </div> 
                 <div className="row" >
                     <div className="col">
-                        {/* participant is arr of objs */}
-                        Participants: {participants.map(p => {
-                          <div>{p.value}</div>
-                        })}
+                        Participants:
+                        {vacation.users.map((p) => 
+                          <> {p.username},</>
+                        )}
                     </div>
                   </div>
                 <div className="row align-items-start" id="clickers">

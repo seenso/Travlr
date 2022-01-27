@@ -34,18 +34,18 @@ export default function Vacations({user, body, setBody, participants, vacation})
   function returnToVacations (){
     setBody("vacations")
   }
-
-  console.log("USER IN VACATION.JS", user)
+  console.log("VACATIONCARD.USERS IN VACATION.JS", vacationCard)
   console.log("PARTICIPANTS IN VACATION.JS", participants)
+
     
   return (
       <nav className="vacations">
             {body === "vacations" ?
               user.vacations.map((v)=> 
-                <VacationCard body={body} setBody={setBody} vacation={v} handleDelete={handleDelete} handleClick={seePlans} buttonText={"See Plans"} key={v.title} participants={participants}
+                <VacationCard body={body} setBody={setBody} vacation={v} handleDelete={handleDelete} handleClick={seePlans} buttonText={"See Plans"} key={v.title} participants={v.users}
                 />
               ) : 
-                <VacationCard body={body} setBody={setBody} vacation={vacationCard} handleDelete={handleDelete} buttonText={"Return to All Vacations"} handleClick={returnToVacations}  participants={participants}
+                <VacationCard body={body} setBody={setBody} vacation={vacationCard} handleDelete={handleDelete} buttonText={"Return to All Vacations"} handleClick={returnToVacations}  participants={vacationCard.users}
                 />
                 }
       </nav>

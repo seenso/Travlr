@@ -23,17 +23,18 @@ export default function App() {
     });
   }, []);
 
+  console.log("WHAT IS THE USER IN APP.JS?", user) // user = default user state
+
   
   useEffect(() => {
     fetch("/users").then((r) => {
-      // console.log(r)
       if (r.ok) {
         r.json().then((userList) => setUserList(userList));
       }
     });
   }, []);
 
-
+  console.log("WHAT IS USERLIST IN APP.JS?", userList)
 
   useEffect(() => {
     fetch("/vacations").then((r) => {
@@ -46,7 +47,7 @@ export default function App() {
 
 
 
-  if (!user && !isLoading) return (
+  if (!user.username && !isLoading) return (
     <div className="App">
       <Landing onLogin={setUser} />
     </div>
@@ -61,6 +62,7 @@ export default function App() {
         setVacation={setVacation}
         userList={userList}
         setUserList={setUserList}
+        onLogin={setUser}
       />
     </div>
   )
