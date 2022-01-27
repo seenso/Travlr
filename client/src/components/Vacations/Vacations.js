@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import VacationCard from "../VacationCard/VacationCard";
-import { useState } from 'react';
 import { Row } from 'react-bootstrap';
 import Button from "react-bootstrap/Button";
-
 import "./vacations.scss"
 
 export default function Vacations({user, body, setBody, participants, vacation}) {
@@ -17,25 +15,27 @@ export default function Vacations({user, body, setBody, participants, vacation})
       })
       .then(res => {
         if(res.ok){
-          console.log(res)
           setBody("deleted")
         } else {
         res.json().then(console.log)
         }
       })
-    }
+  }
 
-    function seePlans (e) {
-      setBody("card")
-      console.log(e.target.id)
-      fetch(`/vacations/${e.target.id}`)
-        .then(res => res.json())
-        .then(json=>setVacationCard(json))
-      }
+  function seePlans (e) {
+    setBody("card")
+    // console.log(e.target.id)
+    fetch(`/vacations/${e.target.id}`)
+      .then(res => res.json())
+      .then(json=>setVacationCard(json))
+  }
 
-    function returnToVacations (){
-      setBody("vacations")
-    }
+  function returnToVacations (){
+    setBody("vacations")
+  }
+
+  console.log("USER IN VACATION.JS", user)
+  console.log("PARTICIPANTS IN VACATION.JS", participants)
     
   return (
       <nav className="vacations">

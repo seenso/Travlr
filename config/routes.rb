@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   # to show all users/paticipants in a vacation
   get "/vacation/:id", to: "vacation_users#show"
 
+  # get  most recently made vacation
+  get "/vacations/last", to: "vacations#last"
+
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }

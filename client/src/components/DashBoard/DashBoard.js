@@ -8,10 +8,9 @@ import React, { useState } from 'react';
 
 import "./dashboard.scss"
 
-export default function DashBoard({ user, setUser, userList, setUserList }) {
+export default function DashBoard({ user, setUser, userList, setUserList, vacation, setVacation }) {
   const [body, setBody] = useState("vacations");
   const [participants, setParticipants] = useState([])
-  const [vacation, setVacation] = useState(null)
 
   console.log("Participants in Dashboard", participants)
 

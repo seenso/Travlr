@@ -28,6 +28,13 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
         head :no_content
     end
 
+    # GET /vacations/last
+    # Get most recently created vacation
+    def last
+        last = Vacation.all.length
+        render json: last
+    end
+
     private
         def vacation_params
             params.permit(:title, :start_date, :end_date, :location, :number_of_food, :number_of_activities, :estimated_budget)

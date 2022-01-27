@@ -15,9 +15,11 @@ export default function NewVacation( { user, userList, setUserList, participants
   const [dateRange, setDateRange] = useState([null, null])
   const [startDate, endDate] = dateRange;
   const [errors, setErrors] = useState([]);
-  // const [participants, setParticipants] = useState([])
+
+  // console.log("PARTICIPANTS IN NEW VACATION", participants) // gave arr of [] of obj w participants. username = participant.value
 
   function handleSubmit(e) {
+    console.log("E IN HANDLESUBMIT IN NEWVACATION", e)
     e.preventDefault();
     // CREATE VACATION
     fetch("/vacations", {
@@ -36,38 +38,27 @@ export default function NewVacation( { user, userList, setUserList, participants
         })
     })
     .then((r)=>{
-        // console.log("R in handleSubmit in NewVacation", r)
         if (r.ok) {
-          r.json().then((vacation) => handleOtherSubmit(vacation));
+          // console.log("IS THIS THE CURRENT VACATION?", vacation) // gave arr of all vacations
+          // CREATE VACATION_USER RECORD FOR EACH PARTICIPANT              
+          participants.map((p) =>{
+            fetch("/vacation_users", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                user_id: p.id,
+                vacation_id: vacation.length+1
+              }),
+            })
+          })
+          // UPDATE VACATION STATE
+          setVacation(vacation)
         } else {
           r.json().then((err) => setErrors(err.errors));
         }
     })
-
-    // CREATE VACATION_USER RECORD
-      // get last record's id
-
-      // fetch /vacation_users and post record for each user in last vacation record
-
-  }
-
-  function handleOtherSubmit(vacation){
-    console.log("Participants in handleOtherSubmit in NewVacation", participants)
-    console.log("vacation input in handleOtherSubmit in NewVacation", vacation)
-    participants.map((p) =>{
-      fetch("/vacation_users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user_id: p.id,
-          vacation_id: vacation.id
-        }),
-      })
-    })
-    setVacation(vacation)
-    console.log("VACAY in HandleOtherSubmit in NewVacation", vacation)
   }
 
   const createOptions = () => {
@@ -75,8 +66,8 @@ export default function NewVacation( { user, userList, setUserList, participants
   }
 
   const handleOnChange = e => {
-    console.log("E IN handleOnChange in NewVacation", e)
-    setParticipants(Array.isArray(e) ? e : [])
+    // e is an [] of objs with id: #, label: participantsName, value: participantsName
+    setParticipants(e)
   };
  
   return (
