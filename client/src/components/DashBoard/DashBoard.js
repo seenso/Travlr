@@ -11,7 +11,8 @@ import "./dashboard.scss"
 export default function DashBoard({ user, setUser, userList, setUserList }) {
   const [body, setBody] = useState("vacations");
   const [participants, setParticipants] = useState([])
-   const [vacation, setVacation] = useState(null)
+  const [vacation, setVacation] = useState(null)
+  
   console.log("Participants in Dashboard", participants)
 
   return (

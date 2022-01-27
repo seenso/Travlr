@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :activities, only:[:index, :create, :update, :destroy] #no show
   resources :foods, only:[:index, :create, :update, :destroy] #no show
   resources :lodgings, only:[:index, :create, :update, :destroy] #no show
-  resources :vacation_users, only:[:index, :create, :destroy] 
+  resources :vacation_users, only:[:index, :showVacationsUsers, :create, :destroy] 
   resources :vacations #all routes
   resources :users #all routes
 
@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   patch "/foods/:id/dislike" , to: "foods#decrement_likes"
   patch "/lodgings/:id/like" , to: "lodgings#increment_likes"
   patch "/lodgings/:id/dislike" , to: "lodgings#decrement_likes"
+
+  # vto show all users/paticipants in a vacation
+  get "/users/:id", to: "vacation_users#showVacationsUsers"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

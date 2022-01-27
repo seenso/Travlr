@@ -5,6 +5,13 @@ rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
         render json: VacationUser.all
     end
 
+    # to show all users/participants in a vacation by looking for a vacation's :id
+    # GET /vacation_users/vacation/:id
+    def showVacationsUsers
+        vacationUsers = VacationUser.filter( |vacayUserObj| vacayUserObj.vacation.id == params[:id])
+        render json: vacation, serializer: VacationUserSerializer
+    end
+
     def create
         vacationUser = VacationUser.create!(vacationUser_params)
         render json: vacationUser, status: :created
