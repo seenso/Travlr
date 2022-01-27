@@ -1,13 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import OptionsCard from "../OptionsCard/OptionsCard";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Table from 'react-bootstrap/Table'
 
 import "./vacationcard.scss"
 
 
-export default function VacationCard({body, vacation, handleDelete, handleClick, buttonText}) {
+export default function VacationCard({body, vacation, handleDelete, handleClick, buttonText, vacationRequest, setVacationRequest }) {
   const [lodgingModalShow, setLodgingModalShow] = React.useState(false);
   const [foodModalShow, setFoodModalShow] = React.useState(false);
   const [activityModalShow, setActivityModalShow] = React.useState(false);
@@ -18,6 +20,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
   const [foods, setFoods] = useState(null)
   const [activity, setActivity] = useState(null)
 
+  const navigate = useNavigate()
 
   let lodgingName
   let lodgingAddress
@@ -30,14 +33,14 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
   let foodAddress
   let foodUrl
   let foodHours
-  let foodDesc
+  let foodDesc = ""
   let foodEstimatedCost
 
   let activityName
   let activityAddress
   let activityUrl
   let activityHours
-  let activityDesc
+  let activityDesc = ""
   let activityEstimatedCost
 
   function handleSubmitLodging(e) {
@@ -55,7 +58,8 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
           check_in,
           check_out,
           estimated_cost: lodgingEstimatedCost,
-          likes: 0
+          likes: 0,
+          vacation_id: Number(e.target.id)
           }),
       }).then((r) => {
         setIsLoading(false);
@@ -113,7 +117,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             id="lodgingname-input" 
                             placeholder="Enter name..." 
                             onChange={handleSetLodgingName}
-                            autoComplete="off"
+                            autoComplete="on"
                         ></input>
                     </div>
                     <div className="form-group">
@@ -123,7 +127,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="address-input" 
                             placeholder="Enter address..."
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetLodgingAddress}
                         ></input>
                     </div>
@@ -134,7 +138,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="url-input" 
                             placeholder="Enter Website..."
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetLodgingUrl}
                         ></input>
                     </div>
@@ -145,7 +149,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="checkin-input" 
                             placeholder="00:00AM"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetLodgingCheckin}
                         ></input>
                     </div>
@@ -156,7 +160,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="checkin-input" 
                             placeholder="00:00PM"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetLodgingCheckout}
                         ></input>
                     </div>
@@ -167,7 +171,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="cost-input" 
                             placeholder="$0"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetLodgingCost}
                         ></input>
                     </div>
@@ -179,7 +183,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                         </Button>
                     </div>
                     <div>
-                        {errors.map((err) => (
+                        {props.errors && props.errors.map((err) => (
                             <div key={err}>{err}</div>
                         ))}
                     </div>
@@ -188,6 +192,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
         </Modal>
     );
   }
+
 
   function handleSubmitFood(e) {
     e.preventDefault();
@@ -204,7 +209,8 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
         hours: foodHours,
         desc: foodDesc,
         estimated_cost: foodEstimatedCost,
-        likes: 0
+        likes: 0,
+        vacation_id: Number(e.target.id)
         }),
     }).then((r) => {
       setIsLoading(false);
@@ -258,7 +264,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             id="foodname-input" 
                             placeholder="Enter name..." 
                             onChange={handleSetFoodName}
-                            autoComplete="off"
+                            autoComplete="on"
                         ></input>
                     </div>
                     <div className="form-group">
@@ -268,7 +274,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="address-input" 
                             placeholder="Enter address..."
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetFoodAddress}
                         ></input>
                     </div>
@@ -279,7 +285,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="url-input" 
                             placeholder="Enter Website..."
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetFoodUrl}
                         ></input>
                     </div>
@@ -290,7 +296,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="foodhours-input" 
                             placeholder="00:00AM - 00:00PM"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetFoodHours}
                         ></input>
                     </div>
@@ -301,7 +307,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="cost-input" 
                             placeholder="$0"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetFoodCost}
                         ></input>
                     </div>
@@ -313,7 +319,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                         </Button>
                     </div>
                     <div>
-                        {errors.map((err) => (
+                        {props.errors && props.errors.map((err) => (
                             <div key={err}>{err}</div>
                         ))}
                     </div>
@@ -323,11 +329,11 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
     );
   }
 
-
   function handleSubmitActivity(e) {
     e.preventDefault();
+    console.log(e.target.id)
     setIsLoading(true);
-    fetch("/activity", {
+    fetch("/activities", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -339,12 +345,16 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
         hours: activityHours,
         desc: activityDesc,
         estimated_cost: activityEstimatedCost,
-        likes: 0
+        likes: 0,
+        vacation_id: Number(e.target.id)
         }),
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        r.json().then((activity) => setActivity(activity));
+        r.json().then((activity) => {
+          setActivity(activity);
+          // setVacationRequest(vacationRequest+1)
+        });
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -384,7 +394,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-                <Form onSubmit={handleSubmitActivity}>
+                <Form onSubmit={handleSubmitActivity} id={vacation.id} >
                     <div className="form-group">
                         <label>Name*</label>
                         <input 
@@ -393,7 +403,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             id="activityname-input" 
                             placeholder="Enter name..." 
                             onChange={handleSetActivityName}
-                            autoComplete="off"
+                            autoComplete="on"
                         ></input>
                     </div>
                     <div className="form-group">
@@ -403,7 +413,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="address-input" 
                             placeholder="Enter address..."
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetActivityAddress}
                         ></input>
                     </div>
@@ -414,7 +424,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="url-input" 
                             placeholder="Enter Website..."
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetActivityUrl}
                         ></input>
                     </div>
@@ -425,7 +435,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="activityhours-input" 
                             placeholder="00:00AM - 00:00PM"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetActivityHours}
                         ></input>
                     </div>
@@ -436,7 +446,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="cost-input" 
                             placeholder="$0"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetActivityCost}
                         ></input>
                     </div>
@@ -448,7 +458,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                         </Button>
                     </div>
                     <div>
-                        {errors.map((err) => (
+                        {props.errors && props.errors.map((err) => (
                             <div key={err}>{err}</div>
                         ))}
                     </div>
@@ -464,9 +474,9 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
             <div>This vacation has been removed!</div> :
               <div className="container-fluid border" id="vacation-card">
                 <div className="row" >
-                    <div className="col" id="titleheader">
+                    <h4 className="col" id="titleheader">
                       {vacation.title}
-                    </div>
+                    </h4>
                 </div>
                 <div className="row" >
                     <div className="col">
@@ -503,7 +513,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                 </div>
               </div>
           }
-          <table className="table" id="render-options">
+          <Table className="table" id="render-options">
             <thead>
               <tr>
                 {vacation.lodgings && body === "card" ? <th scope="col">
@@ -514,18 +524,20 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                     onClick={() => setLodgingModalShow(true)} 
                   >Add Lodging</Button>
                   <AddLodgingModal
+                    errors={errors}
                     show={lodgingModalShow}
                     onHide={() => setLodgingModalShow(false)}
                   />
-                  </th> : null}
+                </th> : null}
                 {vacation.foods && body === "card" ? <th scope="col">
                   <h5>Where To Eat</h5>
                   <Button 
                         className="button" 
-                        style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                        style={{ backgroundColor: "#3E5C76"}}
                         onClick={() => setFoodModalShow(true)} 
                   >Add Food</Button>
                   <AddFoodModal
+                    errors={errors}
                     show={foodModalShow}
                     onHide={() => setFoodModalShow(false)}
                   />
@@ -538,6 +550,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                         onClick={() => setActivityModalShow(true)} 
                   >Add Activity</Button>
                   <AddActivityModal
+                    errors={errors}
                     show={activityModalShow}
                     onHide={() => setActivityModalShow(false)}
                   />
@@ -569,7 +582,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                 </td>
               </tr>
             </tbody>
-          </table>   
+          </Table>   
     </nav>
   );
 }

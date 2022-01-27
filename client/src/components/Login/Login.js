@@ -43,7 +43,6 @@ export default function Login( { onLogin }) {
         password = e.target.value
     }
 
-
     function MyVerticallyCenteredModal(props) {
         return (
             <Modal

@@ -37,7 +37,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
     private
         def lodging_params
-            params.permit(:name, :address, :url, :check_in, :check_out, :estimated_cost, :vacation_id)
+            params.permit(:name, :address, :url, :check_in, :check_out, :estimated_cost, :likes,  :vacation_id)
         end
 
         def record_invalid(invalid)

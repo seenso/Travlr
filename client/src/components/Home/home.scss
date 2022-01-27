@@ -3,17 +3,23 @@
 
 .home-wrapper{
     position: fixed;
-    top: 20%;
+    top: 40%;
     left: 50%;
     // -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     text-align: center;
 
 
-    h1{
-        font-size: 60px;
+    .home-title{
+        font-size: 40px;
         font-family: $mainfont;
         font-weight: 900;
+    }
+
+    .home-body{
+        font-size: 20px;
+        font-family: $mainfont;
+        font-weight: 500;
     }
 
     

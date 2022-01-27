@@ -1,14 +1,10 @@
 import React from 'react';
 import VacationCard from "../VacationCard/VacationCard";
 import { useState } from 'react';
-import { Row } from 'react-bootstrap';
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-
 
 import "./vacations.scss"
 
-export default function Vacations({user, body, setBody}) {
+export default function Vacations({user, body, setBody, vacationRequest, setVacationRequest,}) {
 const [vacationCard, setVacationCard] = useState("");
 
   // This deletes a VacationUser instance that has the @current_user.id and the clicked vacation's id. This does not re-render all vacations. The page needs to be reset, then user is taken back to the login page. Once logged back in, changes will show.
@@ -21,6 +17,7 @@ const [vacationCard, setVacationCard] = useState("");
         if(res.ok){
           console.log(res)
           setBody("deleted")
+          setVacationRequest(vacationRequest+1)
         } else {
         res.json().then(console.log)
         }
@@ -43,9 +40,26 @@ const [vacationCard, setVacationCard] = useState("");
       <nav className="vacations">
             {body === "vacations" ?
               user.vacations.map((v)=> 
-                <VacationCard body={body} setBody={setBody} vacation={v} handleDelete={handleDelete} handleClick={seePlans} buttonText={"See Plans"} key={v.title}/>
+                <VacationCard 
+                  body={body} 
+                  setBody={setBody} 
+                  vacation={v} 
+                  handleDelete={handleDelete} 
+                  handleClick={seePlans} 
+                  buttonText={"See Plans"} 
+                  key={v.title}
+                  vacationRequest={vacationRequest}
+                  setVacationRequest={setVacationRequest}
+                />
               ) : 
-                <VacationCard body={body} setBody={setBody} vacation={vacationCard} handleDelete={handleDelete} buttonText={"Return to All Vacations"} handleClick={returnToVacations}/>
+                <VacationCard 
+                  body={body} 
+                  setBody={setBody} 
+                  vacation={vacationCard} 
+                  handleDelete={handleDelete} 
+                  buttonText={"Return to All Vacations"} 
+                  handleClick={returnToVacations}
+                />
                 }
       </nav>
   );

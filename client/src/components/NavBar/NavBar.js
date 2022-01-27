@@ -8,7 +8,7 @@ export default function NavBar( {setUser, setBody} ) {
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
-        setUser(null);
+        setUser({username:"", email:"" , vacations:[]});
       }
     });
   }
