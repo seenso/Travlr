@@ -4,10 +4,11 @@ import DashBoard from './components/DashBoard/DashBoard';
 import "./app.scss"
 
 export default function App() {
-  const [user, setUser] = useState({ username:"", email:"" , vacations:[]})
+  const [user, setUser] = useState({username:"", email:"" , vacations:[]})
   const [userList, setUserList] = useState([])
   const [vacation, setVacation] = useState(null)
   const [isLoading, setIsLoading] = useState(false);
+  const [vacationRequest, setVacationRequest] = useState(0)
 
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export default function App() {
         setIsLoading(false)
       }
     });
-  }, []);
+  }, [vacationRequest]);
 
   
   useEffect(() => {
@@ -33,19 +34,20 @@ export default function App() {
     });
   }, []);
 
-
-
   useEffect(() => {
     fetch("/vacations").then((r) => {
       if (r.ok) {
+        console.log("Vacations Fetched!")
         r.json().then((vacation) => setVacation(vacation));
       }
     });
-  }, []);
+    console.log("TEST!")
+  }, [vacationRequest]);
 
+  // console.log(user)
+  // console.log(isLoading)
 
-
-  if (!user) return (
+  if (!user.username && !isLoading) return (
     <div className="App">
       <Landing onLogin={setUser} />
     </div>
@@ -60,6 +62,8 @@ export default function App() {
         setVacation={setVacation}
         userList={userList}
         setUserList={setUserList}
+        vacationRequest={vacationRequest}
+        setVacationRequest={setVacationRequest}
       />
     </div>
   )

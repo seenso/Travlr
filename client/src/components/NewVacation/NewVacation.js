@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Row } from 'react-bootstrap';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -13,7 +14,7 @@ import Select from 'react-select'
 import "./newvacation.scss"
 
 
-export default function NewVacation( { user, userList, setUserList }) {
+export default function NewVacation( { user, userList, setUserList, vacationRequest, setVacationRequest }) {
   const [title, setTitle] = useState("")
   const [location, setLocation] = useState("")
   const [vacation, setVacation] = useState("")
@@ -24,6 +25,8 @@ export default function NewVacation( { user, userList, setUserList }) {
   const [number_of_activities, setNumber_of_activities] = useState(0)
   const [errors, setErrors] = useState([]);
   const [participants, setParticipants] = useState([])
+  
+  const navigate = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -45,7 +48,11 @@ export default function NewVacation( { user, userList, setUserList }) {
     .then((r)=>{
         // console.log(r)
         if (r.ok) {
-          r.json().then((vacation) => handleOtherSubmit(vacation));
+          r.json().then((vacation) => {
+            handleOtherSubmit(vacation);
+            setVacationRequest(vacationRequest+1)
+            navigate("/vacations")
+          })
         } else {
           r.json().then((err) => setErrors(err.errors));
         }

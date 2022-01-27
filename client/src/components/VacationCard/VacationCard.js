@@ -8,7 +8,7 @@ import Table from 'react-bootstrap/Table'
 import "./vacationcard.scss"
 
 
-export default function VacationCard({body, vacation, handleDelete, handleClick, buttonText}) {
+export default function VacationCard({body, vacation, handleDelete, handleClick, buttonText }) {
   const [lodgingModalShow, setLodgingModalShow] = React.useState(false);
   const [foodModalShow, setFoodModalShow] = React.useState(false);
   const [activityModalShow, setActivityModalShow] = React.useState(false);
@@ -31,14 +31,14 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
   let foodAddress
   let foodUrl
   let foodHours
-  let foodDesc
+  let foodDesc = ""
   let foodEstimatedCost
 
   let activityName
   let activityAddress
   let activityUrl
   let activityHours
-  let activityDesc
+  let activityDesc = ""
   let activityEstimatedCost
 
   function handleSubmitLodging(e) {
@@ -56,7 +56,8 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
           check_in,
           check_out,
           estimated_cost: lodgingEstimatedCost,
-          likes: 0
+          likes: 0,
+          vacation_id: Number(e.target.id)
           }),
       }).then((r) => {
         setIsLoading(false);
@@ -180,7 +181,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                         </Button>
                     </div>
                     <div>
-                        {errors.map((err) => (
+                        {props.errors && props.errors.map((err) => (
                             <div key={err}>{err}</div>
                         ))}
                     </div>
@@ -189,6 +190,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
         </Modal>
     );
   }
+
 
   function handleSubmitFood(e) {
     e.preventDefault();
@@ -205,7 +207,8 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
         hours: foodHours,
         desc: foodDesc,
         estimated_cost: foodEstimatedCost,
-        likes: 0
+        likes: 0,
+        vacation_id: Number(e.target.id)
         }),
     }).then((r) => {
       setIsLoading(false);
@@ -314,7 +317,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                         </Button>
                     </div>
                     <div>
-                        {errors.map((err) => (
+                        {props.errors && props.errors.map((err) => (
                             <div key={err}>{err}</div>
                         ))}
                     </div>
@@ -327,8 +330,9 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
 
   function handleSubmitActivity(e) {
     e.preventDefault();
+    console.log(e.target.id)
     setIsLoading(true);
-    fetch("/activity", {
+    fetch("/activities", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -340,7 +344,8 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
         hours: activityHours,
         desc: activityDesc,
         estimated_cost: activityEstimatedCost,
-        likes: 0
+        likes: 0,
+        vacation_id: Number(e.target.id)
         }),
     }).then((r) => {
       setIsLoading(false);
@@ -385,7 +390,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-                <Form onSubmit={handleSubmitActivity}>
+                <Form onSubmit={handleSubmitActivity} id={vacation.id} >
                     <div className="form-group">
                         <label>Name*</label>
                         <input 
@@ -449,7 +454,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                         </Button>
                     </div>
                     <div>
-                        {errors.map((err) => (
+                        {props.errors && props.errors.map((err) => (
                             <div key={err}>{err}</div>
                         ))}
                     </div>
@@ -515,6 +520,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                     onClick={() => setLodgingModalShow(true)} 
                   >Add Lodging</Button>
                   <AddLodgingModal
+                    errors={errors}
                     show={lodgingModalShow}
                     onHide={() => setLodgingModalShow(false)}
                   />
@@ -527,6 +533,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                         onClick={() => setFoodModalShow(true)} 
                   >Add Food</Button>
                   <AddFoodModal
+                    errors={errors}
                     show={foodModalShow}
                     onHide={() => setFoodModalShow(false)}
                   />
@@ -539,6 +546,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                         onClick={() => setActivityModalShow(true)} 
                   >Add Activity</Button>
                   <AddActivityModal
+                    errors={errors}
                     show={activityModalShow}
                     onHide={() => setActivityModalShow(false)}
                   />
