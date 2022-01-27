@@ -7,26 +7,23 @@ import "react-datepicker/dist/react-datepicker.css";
 import NumberPicker from "react-widgets/NumberPicker";
 import "react-widgets/styles.css";
 
-
-
 import Select from 'react-select'
 import "./newvacation.scss"
 
-
-export default function NewVacation( { user, userList, setUserList }) {
+export default function NewVacation( { user, userList, setUserList, participants, setParticipants, vacation, setVacation }) {
   const [title, setTitle] = useState("")
   const [location, setLocation] = useState("")
-  const [vacation, setVacation] = useState("")
   const [estimated_budget, setEstimated_Budget] = useState("")
   const [dateRange, setDateRange] = useState([null, null])
   const [startDate, endDate] = dateRange;
   const [number_of_food, setNumber_of_food] = useState(0)
   const [number_of_activities, setNumber_of_activities] = useState(0)
   const [errors, setErrors] = useState([]);
-  const [participants, setParticipants] = useState([])
 
   function handleSubmit(e) {
+    console.log("E IN HANDLESUBMIT IN NEWVACATION", e)
     e.preventDefault();
+    // CREATE VACATION
     fetch("/vacations", {
         method: "POST",
         headers: {
@@ -43,9 +40,23 @@ export default function NewVacation( { user, userList, setUserList }) {
         }),
     })
     .then((r)=>{
-        // console.log(r)
         if (r.ok) {
-          r.json().then((vacation) => handleOtherSubmit(vacation));
+          // console.log("IS THIS THE CURRENT VACATION?", vacation) // gave arr of all vacations
+          // CREATE VACATION_USER RECORD FOR EACH PARTICIPANT              
+          participants.map((p) =>{
+            fetch("/vacation_users", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                user_id: p.id,
+                vacation_id: vacation.length+1
+              }),
+            })
+          })
+          // UPDATE VACATION STATE
+          setVacation(vacation)
         } else {
           r.json().then((err) => setErrors(err.errors));
         }
@@ -53,28 +64,13 @@ export default function NewVacation( { user, userList, setUserList }) {
     // e.target.reset()
   }
 
-  function handleOtherSubmit(vacation){
-    participants.map((v) =>{
-      fetch("/vacation_users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user_id: v.id,
-          vacation_id: vacation.id
-        }),
-      })
-    })
-    setVacation(vacation)
-  }
-
   const createOptions = () => {
     return userList.map((u) => ({value: u.username, label: u.username, id: u.id}))
   }
 
   const handleOnChange = e => {
-    setParticipants(Array.isArray(e) ? e : [])
+    // e is an [] of objs with id: #, label: participantsName, value: participantsName
+    setParticipants(e)
   };
  
   return (
