@@ -3,6 +3,7 @@ import OptionsCard from "../OptionsCard/OptionsCard";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Table from 'react-bootstrap/Table'
 
 import "./vacationcard.scss"
 
@@ -464,9 +465,9 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
             <div>This vacation has been removed!</div> :
               <div className="container-fluid border" id="vacation-card">
                 <div className="row" >
-                    <div className="col" id="titleheader">
+                    <h4 className="col" id="titleheader">
                       {vacation.title}
-                    </div>
+                    </h4>
                 </div>
                 <div className="row" >
                     <div className="col">
@@ -503,7 +504,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                 </div>
               </div>
           }
-          <table className="table" id="render-options">
+          <Table className="table" id="render-options">
             <thead>
               <tr>
                 {vacation.lodgings && body === "card" ? <th scope="col">
@@ -517,12 +518,12 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                     show={lodgingModalShow}
                     onHide={() => setLodgingModalShow(false)}
                   />
-                  </th> : null}
+                </th> : null}
                 {vacation.foods && body === "card" ? <th scope="col">
                   <h5>Where To Eat</h5>
                   <Button 
                         className="button" 
-                        style={{ backgroundColor: "#3E5C76", margin: "1%"}}
+                        style={{ backgroundColor: "#3E5C76"}}
                         onClick={() => setFoodModalShow(true)} 
                   >Add Food</Button>
                   <AddFoodModal
@@ -569,7 +570,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                 </td>
               </tr>
             </tbody>
-          </table>   
+          </Table>   
     </nav>
   );
 }

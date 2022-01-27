@@ -20,20 +20,21 @@ export default function OptionsCard({option}) {
     <nav className="options-container">
           <div className="container-fluid border" id="option-card">
             <div className="row" >
-                <div className="col" id="option-name">
+                <h5 className="col" id="option-name">
                   {option.name}
-                </div>
+                </h5>
                 <div className="col" id="likes">
                 ❤️️
                 </div>
             </div>
             <div className="row" >
                 <div className="col">
-                    Website: {option.url}
+                    Website:<br/>
+                    <a href={option.url} target="_blank">{option.url}</a><br/>
                     Hours: {option.hours} <br/>
                     Address: {option.address} <br/>
                     About: {option.desc}<br/>
-                    Estimated Cost: ${option.estimated_cost} <br/>                  
+                    Estimated Cost: ${option.estimated_cost}<br/>                  
                 </div>
             </div> 
             <div className="row align-items-start" id="clickers">

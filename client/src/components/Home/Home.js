@@ -7,8 +7,9 @@ export default function Home( {user} ) {
   return (
     <nav className="home">
         <div className="home-wrapper">
-            <h1>Hello, {user.username}</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+            <div className="home-title">Hello, {user.username}</div>
+            <div className="home-body">Ready to make your next trip easier to plan, budget, and enjoy with your friends and family?</div>
+            <div className="home-body">Look no further! In this application, you can create new vacations to manage where you and your party will want to stay, eat, and have fun.</div>
         </div>
     </nav>
   );

@@ -45,7 +45,7 @@ export default function App() {
 
 
 
-  if (!user && !isLoading) return (
+  if (!user) return (
     <div className="App">
       <Landing onLogin={setUser} />
     </div>
