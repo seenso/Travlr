@@ -19,6 +19,7 @@ export default function NewVacation( { user, userList, setUserList, participants
 
   function handleSubmit(e) {
     e.preventDefault();
+    // CREATE VACATION
     fetch("/vacations", {
         method: "POST",
         headers: {
@@ -32,7 +33,7 @@ export default function NewVacation( { user, userList, setUserList, participants
             estimated_budget,
             number_of_food: 0,
             number_of_activities: 0
-        }),
+        })
     })
     .then((r)=>{
         // console.log("R in handleSubmit in NewVacation", r)
@@ -42,18 +43,25 @@ export default function NewVacation( { user, userList, setUserList, participants
           r.json().then((err) => setErrors(err.errors));
         }
     })
+
+    // CREATE VACATION_USER RECORD
+      // get last record's id
+
+      // fetch /vacation_users and post record for each user in last vacation record
+
   }
 
   function handleOtherSubmit(vacation){
     console.log("Participants in handleOtherSubmit in NewVacation", participants)
-    participants.map((v) =>{
+    console.log("vacation input in handleOtherSubmit in NewVacation", vacation)
+    participants.map((p) =>{
       fetch("/vacation_users", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          user_id: v.id,
+          user_id: p.id,
           vacation_id: vacation.id
         }),
       })

@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import OptionsCard from "../OptionsCard/OptionsCard";
-import { useState } from 'react';
-
 import "./vacationcard.scss"
 
-
 export default function VacationCard({body, vacation, handleDelete, handleClick, buttonText, setParticipants, participants}) {
+  
   
   // console.log("Vacation in VacationCard", vacation)
   // console.log("Participants in VacationCard", participants)
 
   function addParticipant() {
     console.log('addParticipant has been invoked in VacationCard!!!!!');
+
   }
   return (
     <nav className="vacation-container">
@@ -37,7 +36,9 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                 </div> 
                 <div className="row" >
                     <div className="col">
-                        Participants: 
+                        Participants: {participants.map((p) => 
+                          <div className="participants">{p.value}</div>
+                        )}
                     </div>
                   </div>
                 <div className="row align-items-start" id="clickers">

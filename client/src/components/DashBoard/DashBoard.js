@@ -12,7 +12,7 @@ export default function DashBoard({ user, setUser, userList, setUserList }) {
   const [body, setBody] = useState("vacations");
   const [participants, setParticipants] = useState([])
   const [vacation, setVacation] = useState(null)
-  
+
   console.log("Participants in Dashboard", participants)
 
   return (
@@ -32,8 +32,6 @@ export default function DashBoard({ user, setUser, userList, setUserList }) {
                         setUserList={setUserList}
                         participants={participants}
                         setParticipants={setParticipants}
-                        vacation={vacation}
-                        setVacation={setVacation}
                       />
                     } />
                     <Route exact path="/vacations" element={
