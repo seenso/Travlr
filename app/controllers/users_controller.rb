@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-skip_before_action :authorize, only: [:create, :show]
+skip_before_action :authorize, only: [:create]
 
     def index
         render json: User.all
@@ -30,6 +30,7 @@ skip_before_action :authorize, only: [:create, :show]
     # GET /me
     # handles the auto-login and allows user to stay logged in when page refreshes
     def show
+        # byebug
         render json: @current_user
     end
 
