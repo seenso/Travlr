@@ -39,7 +39,6 @@ export default function App() {
     fetch("/vacations").then((r) => {
       if (r.ok) {
         r.json().then((vacation) => setVacation(vacation));
-        // vacation here is set fine
       }
     });
   }, []);

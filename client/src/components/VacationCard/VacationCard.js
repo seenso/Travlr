@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 
 import "./vacationcard.scss"
 
+
 export default function VacationCard({body, vacation, handleDelete, handleClick, buttonText}) {
   const [lodgingModalShow, setLodgingModalShow] = React.useState(false);
   const [foodModalShow, setFoodModalShow] = React.useState(false);
@@ -481,10 +482,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                 </div> 
                 <div className="row" >
                     <div className="col">
-                        {/* participant is arr of objs */}
-                        Participants: {participants.map(p => {
-                          <div>{p.value}</div>
-                        })}
+                        Participants:
                     </div>
                   </div>
                 <div className="row align-items-start" id="clickers">
