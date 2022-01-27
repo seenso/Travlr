@@ -50,6 +50,7 @@ export default function NewVacation( { user, userList, setUserList }) {
           r.json().then((err) => setErrors(err.errors));
         }
     })
+    // e.target.reset()
   }
 
   function handleOtherSubmit(vacation){
