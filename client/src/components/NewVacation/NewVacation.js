@@ -7,10 +7,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import NumberPicker from "react-widgets/NumberPicker";
 import "react-widgets/styles.css";
-
-
-
 import Select from 'react-select'
+
 import "./newvacation.scss"
 
 
@@ -57,7 +55,6 @@ export default function NewVacation( { user, userList, setUserList, vacationRequ
           r.json().then((err) => setErrors(err.errors));
         }
     })
-    // e.target.reset()
   }
 
   function handleOtherSubmit(vacation){

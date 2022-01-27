@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import OptionsCard from "../OptionsCard/OptionsCard";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
@@ -8,7 +9,7 @@ import Table from 'react-bootstrap/Table'
 import "./vacationcard.scss"
 
 
-export default function VacationCard({body, vacation, handleDelete, handleClick, buttonText }) {
+export default function VacationCard({body, vacation, handleDelete, handleClick, buttonText, vacationRequest, setVacationRequest }) {
   const [lodgingModalShow, setLodgingModalShow] = React.useState(false);
   const [foodModalShow, setFoodModalShow] = React.useState(false);
   const [activityModalShow, setActivityModalShow] = React.useState(false);
@@ -19,6 +20,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
   const [foods, setFoods] = useState(null)
   const [activity, setActivity] = useState(null)
 
+  const navigate = useNavigate()
 
   let lodgingName
   let lodgingAddress
@@ -115,7 +117,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             id="lodgingname-input" 
                             placeholder="Enter name..." 
                             onChange={handleSetLodgingName}
-                            autoComplete="off"
+                            autoComplete="on"
                         ></input>
                     </div>
                     <div className="form-group">
@@ -125,7 +127,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="address-input" 
                             placeholder="Enter address..."
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetLodgingAddress}
                         ></input>
                     </div>
@@ -136,7 +138,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="url-input" 
                             placeholder="Enter Website..."
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetLodgingUrl}
                         ></input>
                     </div>
@@ -147,7 +149,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="checkin-input" 
                             placeholder="00:00AM"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetLodgingCheckin}
                         ></input>
                     </div>
@@ -158,7 +160,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="checkin-input" 
                             placeholder="00:00PM"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetLodgingCheckout}
                         ></input>
                     </div>
@@ -169,7 +171,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="cost-input" 
                             placeholder="$0"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetLodgingCost}
                         ></input>
                     </div>
@@ -262,7 +264,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             id="foodname-input" 
                             placeholder="Enter name..." 
                             onChange={handleSetFoodName}
-                            autoComplete="off"
+                            autoComplete="on"
                         ></input>
                     </div>
                     <div className="form-group">
@@ -272,7 +274,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="address-input" 
                             placeholder="Enter address..."
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetFoodAddress}
                         ></input>
                     </div>
@@ -283,7 +285,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="url-input" 
                             placeholder="Enter Website..."
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetFoodUrl}
                         ></input>
                     </div>
@@ -294,7 +296,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="foodhours-input" 
                             placeholder="00:00AM - 00:00PM"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetFoodHours}
                         ></input>
                     </div>
@@ -305,7 +307,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="cost-input" 
                             placeholder="$0"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetFoodCost}
                         ></input>
                     </div>
@@ -326,7 +328,6 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
         </Modal>
     );
   }
-
 
   function handleSubmitActivity(e) {
     e.preventDefault();
@@ -350,7 +351,10 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        r.json().then((activity) => setActivity(activity));
+        r.json().then((activity) => {
+          setActivity(activity);
+          // setVacationRequest(vacationRequest+1)
+        });
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -399,7 +403,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             id="activityname-input" 
                             placeholder="Enter name..." 
                             onChange={handleSetActivityName}
-                            autoComplete="off"
+                            autoComplete="on"
                         ></input>
                     </div>
                     <div className="form-group">
@@ -409,7 +413,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="address-input" 
                             placeholder="Enter address..."
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetActivityAddress}
                         ></input>
                     </div>
@@ -420,7 +424,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="url-input" 
                             placeholder="Enter Website..."
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetActivityUrl}
                         ></input>
                     </div>
@@ -431,7 +435,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="activityhours-input" 
                             placeholder="00:00AM - 00:00PM"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetActivityHours}
                         ></input>
                     </div>
@@ -442,7 +446,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                             className="form-control" 
                             id="cost-input" 
                             placeholder="$0"
-                            autoComplete="off"
+                            autoComplete="on"
                             onChange={handleSetActivityCost}
                         ></input>
                     </div>

@@ -11,7 +11,13 @@ import "./dashboard.scss"
 import React from 'react';
 
 
-export default function DashBoard({ user, setUser, vacation, setVacation, userList, setUserList, onLogin, vacationRequest, setVacationRequest }) {
+export default function DashBoard({ 
+  user, setUser, 
+  vacation, setVacation, 
+  userList, setUserList, 
+  onLogin, 
+  vacationRequest, setVacationRequest 
+}) {
   const [body, setBody] = useState("vacations");
 
 
@@ -34,7 +40,17 @@ export default function DashBoard({ user, setUser, vacation, setVacation, userLi
                         setVacationRequest={setVacationRequest}
                       />
                     } />
-                    <Route exact path="/vacations" element={<Vacations vacationRequest={vacationRequest} setVacationRequest={setVacationRequest} user={user} setBody={setBody} body={body}/> } />
+                    <Route exact path="/vacations" element={
+                      <Vacations 
+                        vacationRequest={vacationRequest} 
+                        setVacationRequest={setVacationRequest} 
+                        user={user} 
+                        setBody={setBody} 
+                        body={body}
+                        vacationRequest={vacationRequest}
+                        setVacationRequest={setVacationRequest}
+                      /> 
+                    } />
                 </Routes>
             </div>
         </div>

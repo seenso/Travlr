@@ -41,7 +41,6 @@ export default function App() {
         r.json().then((vacation) => setVacation(vacation));
       }
     });
-    console.log("TEST!")
   }, [vacationRequest]);
 
   // console.log(user)

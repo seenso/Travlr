@@ -1,9 +1,6 @@
 import React from 'react';
 import VacationCard from "../VacationCard/VacationCard";
 import { useState } from 'react';
-import { Row } from 'react-bootstrap';
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 
 import "./vacations.scss"
 
@@ -43,9 +40,26 @@ const [vacationCard, setVacationCard] = useState("");
       <nav className="vacations">
             {body === "vacations" ?
               user.vacations.map((v)=> 
-                <VacationCard body={body} setBody={setBody} vacation={v} handleDelete={handleDelete} handleClick={seePlans} buttonText={"See Plans"} key={v.title}/>
+                <VacationCard 
+                  body={body} 
+                  setBody={setBody} 
+                  vacation={v} 
+                  handleDelete={handleDelete} 
+                  handleClick={seePlans} 
+                  buttonText={"See Plans"} 
+                  key={v.title}
+                  vacationRequest={vacationRequest}
+                  setVacationRequest={setVacationRequest}
+                />
               ) : 
-                <VacationCard body={body} setBody={setBody} vacation={vacationCard} handleDelete={handleDelete} buttonText={"Return to All Vacations"} handleClick={returnToVacations}/>
+                <VacationCard 
+                  body={body} 
+                  setBody={setBody} 
+                  vacation={vacationCard} 
+                  handleDelete={handleDelete} 
+                  buttonText={"Return to All Vacations"} 
+                  handleClick={returnToVacations}
+                />
                 }
       </nav>
   );
