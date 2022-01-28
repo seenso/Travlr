@@ -173,7 +173,7 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
                             type="cost" 
                             className="form-control" 
                             id="cost-input" 
-                            placeholder="$0"
+                            placeholder="0"
                             autoComplete="on"
                             onChange={handleSetLodgingCost}
                         ></input>
@@ -310,7 +310,7 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
                             type="cost" 
                             className="form-control" 
                             id="cost-input" 
-                            placeholder="$0"
+                            placeholder="0"
                             autoComplete="on"
                             onChange={handleSetFoodCost}
                         ></input>
@@ -451,7 +451,7 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
                             type="cost" 
                             className="form-control" 
                             id="cost-input" 
-                            placeholder="$0"
+                            placeholder="0"
                             autoComplete="on"
                             onChange={handleSetActivityCost}
                         ></input>
@@ -490,9 +490,9 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
             </> :
               <div className="container-fluid border" id="vacation-card">
                 <div className="row" >
-                    <div className="col" id="titleheader">
+                    <h4 className="col" id="titleheader">
                       {vacation.title}
-                    </div>
+                    </h4>
                 </div>
                 <div className="row" >
                     <div className="col">

@@ -8,11 +8,11 @@ import "./landing.scss"
 export default function Landing( { onLogin }) {
 
     return (
-        <>
+        <div>
             <div className="landing-container" id="landing">
                 <Col className="column">
                     <Row>
-                        {/* <img src="" alt="landing" /> */}
+                        {/* <img className="background" src="https://cdn2.photostockeditor.com/c/0701/mountain-landscape-photography-of-silhouette-of-mountains-during-daytime-mountain%20range-mountain%20range-image.jpg" alt="landing" /> */}
                         <h1 className="landing-title">TRAVLR</h1>
                         <h2>Vacations made easy!</h2>
                     </Row>
@@ -24,7 +24,7 @@ export default function Landing( { onLogin }) {
                     </Row>
                 </Col>
             </div>
-        </>
+        </div>
     )
 }
 
