@@ -16,16 +16,16 @@ export default function OptionsCard({option, type, name, setBody, body, setVacat
     console.log(option)
     setRemovedItemMsg(option.name)
     setReturnToVacay(option.vacation)
-      // fetch(`/${type}/${option.id}`, {
-    //   method:'DELETE'
-    //   })
-    //   .then(res => {
-    //     if(res.ok){
-    //       console.log(res)
-    //     } else {
-    //     res.json().then(console.log)
-    //     }
-    //   })
+      fetch(`/${type}/${option.id}`, {
+      method:'DELETE'
+      })
+      .then(res => {
+        if(res.ok){
+          console.log(res)
+        } else {
+        res.json().then(console.log)
+        }
+      })
       setBody("deleted")
 
   }
