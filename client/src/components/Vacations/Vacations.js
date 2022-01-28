@@ -55,7 +55,8 @@ const [vacationCard, setVacationCard] = useState("");
                 <VacationCard 
                   body={body} 
                   setBody={setBody} 
-                  vacation={vacationCard} 
+                  vacation={vacationCard}
+                  setVacation={setVacationCard} 
                   handleDelete={handleDelete} 
                   buttonText={"Return to All Vacations"} 
                   handleClick={returnToVacations}
