@@ -463,9 +463,9 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
                         </Button>
                     </div>
                     <div>
-                        {props.errors && props.errors.map((err) => (
+                        {/* {props.errors && props.errors.map((err) => (
                             <div key={err}>{err}</div>
-                        ))}
+                        ))} */}
                     </div>
                 </Form>
         </Modal.Body>

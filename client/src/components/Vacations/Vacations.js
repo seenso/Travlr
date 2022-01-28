@@ -18,19 +18,19 @@ const [returnToVacay, setReturnToVacay] = useState(user);
     setRemovedItemMsg(e.target.title)
     setReturnToVacay(user)
     console.log(e)
-    // fetch(`/vacation_users/${vacation}`, {
-    //   method:'DELETE'
-    //   })
-    //   .then(res => {
-    //     if(res.ok){
-    //       console.log(res)
-    //       setBody("deleted")
-    //       setVacationRequest(vacationRequest+1)
-    //       setRemovedItemMsg("Vacation")
-    //     } else {
-    //     res.json().then(console.log)
-    //     }
-    //   })
+    fetch(`/vacation_users/${vacation}`, {
+      method:'DELETE'
+      })
+      .then(res => {
+        if(res.ok){
+          console.log(res)
+          setBody("deleted")
+          setVacationRequest(vacationRequest+1)
+          setRemovedItemMsg("Vacation")
+        } else {
+        res.json().then(console.log)
+        }
+      })
     }
 
     function seePlans (e) {
