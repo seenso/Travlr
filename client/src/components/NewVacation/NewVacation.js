@@ -44,7 +44,6 @@ export default function NewVacation( { user, userList, setUserList, vacationRequ
         }),
     })
     .then((r)=>{
-        // console.log(r)
         if (r.ok) {
           r.json().then((vacation) => {
             handleOtherSubmit(vacation);
@@ -138,7 +137,6 @@ export default function NewVacation( { user, userList, setUserList, vacationRequ
             isMulti 
             className="basic-multi-select"
             classNamePrefix="select"
-            // defaultValue={}
             value={participants}
             options={createOptions()} 
             onChange={handleOnChange}

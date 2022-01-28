@@ -50,7 +50,6 @@ export default function LodgingsCard({option, type, name, setBody, body, setVaca
             }))
       } else {
         setLiked(true)
-        // setLikeCount(option.likes+=1)
         fetch(`/${type}/${option.id}/like`, {
           method: "PATCH",
           headers: {
