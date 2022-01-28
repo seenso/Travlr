@@ -97,7 +97,7 @@ export default function LodgingsCard({option, type, name, setBody, body, setVaca
             </div>
             <div className="row" >
                 <div className="col">
-                    <h6>Website: <a href={option.url} target="_blank" style={{"fontWeight":"100"}}>{option.url}</a></h6>
+                    <h6>Website: <a href={option.url} target="_blank" style={{"fontWeight":"100"}}>{option.url.slice(0,30)}...</a></h6>
                     <h6>Address: <span style={{"fontWeight":"100"}}>{option.address}</span></h6>
                     <h6>Check-in: <span style={{"fontWeight":"100"}}>{option.check_in}</span></h6>
                     <h6>Check-out: <span style={{"fontWeight":"100"}}>{option.check_out}</span></h6>
