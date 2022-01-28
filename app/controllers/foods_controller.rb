@@ -37,7 +37,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
     private
         def food_params
-            params.permit(:name, :address, :url, :hours, :desc, :estimated_cost, :likes, :vacation_id)
+            params.require(:food).permit(:name, :address, :url, :hours, :desc, :estimated_cost, :likes, :vacation_id)
         end
 
         def record_invalid(invalid)
