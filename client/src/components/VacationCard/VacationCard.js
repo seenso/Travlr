@@ -240,6 +240,10 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
     e.preventDefault();
     foodHours = e.target.value
   }
+  function handleSetFoodDesc(e){
+    e.preventDefault();
+    foodDesc = e.target.value
+  }
   function handleSetFoodCost(e){
     e.preventDefault();
     foodEstimatedCost = e.target.value
@@ -301,6 +305,17 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
                             placeholder="00:00AM - 00:00PM"
                             autoComplete="on"
                             onChange={handleSetFoodHours}
+                        ></input>
+                    </div>
+                    <div className="form-group">
+                        <label>About*</label>
+                        <input 
+                            type="foodDesc" 
+                            className="form-control" 
+                            id="foodDesc-input" 
+                            placeholder="Enter Description.."
+                            autoComplete="on"
+                            onChange={handleSetFoodDesc}
                         ></input>
                     </div>
                     <div className="form-group">
@@ -381,6 +396,10 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
     e.preventDefault();
     activityHours = e.target.value
   }
+  function handleSetActivityDesc(e){
+    e.preventDefault();
+    activityDesc = e.target.value
+  }
   function handleSetActivityCost(e){
     e.preventDefault();
     activityEstimatedCost = e.target.value
@@ -442,6 +461,17 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
                             placeholder="00:00AM - 00:00PM"
                             autoComplete="on"
                             onChange={handleSetActivityHours}
+                        ></input>
+                    </div>
+                    <div className="form-group">
+                        <label>About*</label>
+                        <input 
+                            type="activityDesc" 
+                            className="form-control" 
+                            id="activityDesc-input" 
+                            placeholder="Enter Description..."
+                            autoComplete="on"
+                            onChange={handleSetActivityDesc}
                         ></input>
                     </div>
                     <div className="form-group">
