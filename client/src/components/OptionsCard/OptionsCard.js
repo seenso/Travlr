@@ -97,7 +97,7 @@ export default function OptionsCard({option, type, name, setBody, body, setVacat
             </div>
             <div className="row" >
                 <div className="col">
-                    <h6>Website: <span style={{"fontWeight":"100"}}>{option.url}</span></h6>
+                    <h6>Website: <a href={option.url} target="_blank" style={{"fontWeight":"100"}}>{option.url}</a></h6>
                     <h6>Hours: <span style={{"fontWeight":"100"}}>{option.hours}</span></h6>
                     <h6>Address: <span style={{"fontWeight":"100"}}>{option.address}</span></h6>
                     <h6>About: <span style={{"fontWeight":"100"}}>{option.desc}</span></h6>

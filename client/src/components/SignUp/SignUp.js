@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export default function SignUp( {onLogin}) {
+export default function SignUp( {onLogin, setVacationRequest, vacationRequest}) {
     const [modalShow, setModalShow] = React.useState(false);
     const [errors, setErrors] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +28,10 @@ export default function SignUp( {onLogin}) {
         }).then((r) => {
           setIsLoading(false);
           if (r.ok) {
-            r.json().then((user) => onLogin(user));
+            r.json().then((user) => {
+                onLogin(user);
+                setVacationRequest(vacationRequest+1)
+            })
           } else {
             r.json().then((err) => {
                 console.log(err.errors)

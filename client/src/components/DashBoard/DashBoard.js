@@ -29,7 +29,7 @@ export default function DashBoard({
             <div className="content">
                 <Routes>
                     <Route exact path="/" element={
-                      user ? <Home user={user}/> : <Landing user={user} onLogin={onLogin}/>
+                      user ? <Home user={user}/> : <Landing user={user} onLogin={onLogin} vacationRequest={vacationRequest} setVacationRequest={setVacationRequest}/>
                       } />
                     <Route exact path="/new" element={
                       <NewVacation 

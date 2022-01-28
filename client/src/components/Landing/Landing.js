@@ -5,7 +5,7 @@ import SignUp from '../SignUp/SignUp';
 
 import "./landing.scss"
 
-export default function Landing( { onLogin }) {
+export default function Landing( { onLogin, setVacationRequest, vacationRequest }) {
 
     return (
         <div>
@@ -19,7 +19,10 @@ export default function Landing( { onLogin }) {
                     <Row>
                         <div className="landing-buttons">
                             <Login onLogin={onLogin}/>
-                            <SignUp onLogin={onLogin}/>
+                            <SignUp 
+                                onLogin={onLogin}
+                                vacationRequest={vacationRequest} setVacationRequest={setVacationRequest}
+                            />
                         </div>
                     </Row>
                 </Col>
