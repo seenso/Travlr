@@ -8,4 +8,5 @@ class Lodging < ApplicationRecord
   validates :likes, numericality: { greater_than_or_equal_to: 0 }
 
   belongs_to :vacation
+  default_scope { order(vacation_id: :desc, likes: :desc, name: :desc) }
 end
