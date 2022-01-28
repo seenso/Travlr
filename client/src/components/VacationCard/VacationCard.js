@@ -9,11 +9,10 @@ import Table from 'react-bootstrap/Table'
 import "./vacationcard.scss"
 
 
-export default function VacationCard({body, setBody, vacation, setVacation, handleDelete, handleClick, buttonText, vacationRequest, setVacationRequest, removedItemMsg, setRemovedItemMsg, seePlans}) {
+export default function VacationCard({body, setBody, vacation, setVacation, handleDelete, handleClick, buttonText, vacationRequest, setVacationRequest, removedItemMsg, setRemovedItemMsg, seePlans, returnToVacay, setReturnToVacay}) {
   const [lodgingModalShow, setLodgingModalShow] = React.useState(false);
   const [foodModalShow, setFoodModalShow] = React.useState(false);
   const [activityModalShow, setActivityModalShow] = React.useState(false);
-  const [returnToVacay, setReturnToVacay] = useState("");
 
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -523,7 +522,8 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
                       >{buttonText}</Button>
                       <Button 
                         onClick={handleDelete} 
-                        className="button" 
+                        className="button"
+                        title={vacation.title} 
                         id={vacation.id}
                         style={{ backgroundColor: "#3E5C76", margin: "1%"}}
                       >Remove from Vacations</Button>
@@ -582,9 +582,7 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
                       setBody={setBody}
                       body={body}
                       setVacation={setVacation}
-                      removedItemMsg={removedItemMsg}
                       setRemovedItemMsg={setRemovedItemMsg}
-                      seePlans={seePlans}
                       setReturnToVacay={setReturnToVacay}
                     />)
                 : null            
@@ -601,9 +599,7 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
                       setBody={setBody}
                       body={body}
                       setVacation={setVacation}
-                      removedItemMsg={removedItemMsg}
                       setRemovedItemMsg={setRemovedItemMsg}
-                      seePlans={seePlans}
                       setReturnToVacay={setReturnToVacay}
                     />)
                 : null            
@@ -620,9 +616,7 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
                       setBody={setBody}
                       body={body}
                       setVacation={setVacation}
-                      removedItemMsg={removedItemMsg}
                       setRemovedItemMsg={setRemovedItemMsg}
-                      seePlans={seePlans}
                       setReturnToVacay={setReturnToVacay}
                     />)
                     : null            

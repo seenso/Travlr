@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import "./optionscard.scss"
 
 
-export default function OptionsCard({option, type, name, setBody, body, setVacation, removedItemMsg, setRemovedItemMsg, seePlans, handleRepullVacations, setReturnToVacay}) {
+export default function OptionsCard({option, type, name, setBody, body, setVacation, setRemovedItemMsg, setReturnToVacay}) {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(option.likes);
 
@@ -16,12 +16,13 @@ export default function OptionsCard({option, type, name, setBody, body, setVacat
     console.log(option)
     setRemovedItemMsg(option.name)
     setReturnToVacay(option.vacation)
-      fetch(`/${type}/${option.id}`, {
+    fetch(`/${type}/${option.id}`, {
       method:'DELETE'
       })
       .then(res => {
         if(res.ok){
           console.log(res)
+          setBody("deleted")
         } else {
         res.json().then(console.log)
         }
@@ -35,8 +36,6 @@ export default function OptionsCard({option, type, name, setBody, body, setVacat
     console.log(e.target.id)
     if (liked) {
       setLiked(false)
-      setBody("card")
-      // setLikeCount(option.likes-=1)
       fetch(`/${type}/${option.id}/dislike`, {
         method: "PATCH",
         headers: {
@@ -51,7 +50,6 @@ export default function OptionsCard({option, type, name, setBody, body, setVacat
             }))
       } else {
         setLiked(true)
-        setBody("card")
         // setLikeCount(option.likes+=1)
         fetch(`/${type}/${option.id}/like`, {
           method: "PATCH",
@@ -67,16 +65,32 @@ export default function OptionsCard({option, type, name, setBody, body, setVacat
         }))
       }
   }
+
+  function handleRepullVacations (vacation){
+    fetch(`/vacations/${vacation}`)
+      .then(res=> res.json())
+      .then(json=>setVacation(json))
+  }
   
 
   return (
     <> 
-      {body === "deleted" ? null
+      {body === "deleted" ? 
+      <>  <h1 style={{"textAlign": "center"}}>This {name} Has Been Removed</h1> 
+          <div className="col">
+            <Button 
+              onClick={handleDelete} 
+              className="button" 
+              id={option.id}
+              style={{ backgroundColor: "#3E5C76", margin: "1%", "fontSize":"12px"}}
+            >Return to {} Plans {name}</Button>
+            </div>
+      </>
         :
         <div className="row">
             <div className="container-fluid border" id="option-card">
             <div className="row" >
-                <div className="col" id="option-name" style={{"text-align":"center"}}>
+                <div className="col" id="option-name" style={{"textAlign":"center"}}>
                   <h5 style={{"padding":"10px"}}>{option.name}</h5>
                 </div>
                 
@@ -90,26 +104,26 @@ export default function OptionsCard({option, type, name, setBody, body, setVacat
                     <h6>Estimated Cost: <span style={{"fontWeight":"100"}}>${option.estimated_cost}</span></h6>                 
                 </div>
             </div> 
-            <div className="row align-items-start" style={{"text-align":"center"}}>
+            <div className="row align-items-start" style={{"textAlign":"center"}}>
                 <div className="col">
                   <Button 
                     onClick={handleDelete} 
                     className="button" 
                     id={option.id}
-                    style={{ backgroundColor: "#3E5C76", margin: "1%", "font-size":"12px"}}
+                    style={{ backgroundColor: "#3E5C76", margin: "1%", "fontSize":"12px"}}
                   >Delete {name}</Button>
                     {liked ? <Button 
                         onClick={toggleLike} 
                         className="button" 
                         id={option.id}
-                        style={{ backgroundColor: "#0D1321", margin: "1%", "font-size":"12px", color: "white"}}
+                        style={{ backgroundColor: "#0D1321", margin: "1%", "fontSize":"12px", color: "white"}}
                         >{likeCount} 🤍 Voted
                       </Button> :
                       <Button 
                         onClick={toggleLike} 
                         className="button" 
                         id={option.id}
-                        style={{ backgroundColor: "#748CAB", margin: "1%", "font-size":"12px"}}
+                        style={{ backgroundColor: "#748CAB", margin: "1%", "fontSize":"12px"}}
                         >{likeCount} 🖤 Vote
                       </Button>}
                 </div>
