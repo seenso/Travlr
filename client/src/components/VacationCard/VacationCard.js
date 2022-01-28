@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table'
 import "./vacationcard.scss"
 
 
-export default function VacationCard({body, vacation, handleDelete, handleClick, buttonText, vacationRequest, setVacationRequest }) {
+export default function VacationCard({body, setBody, vacation, handleDelete, handleClick, buttonText, vacationRequest, setVacationRequest, participants }) {
   const [lodgingModalShow, setLodgingModalShow] = React.useState(false);
   const [foodModalShow, setFoodModalShow] = React.useState(false);
   const [activityModalShow, setActivityModalShow] = React.useState(false);
@@ -192,7 +192,6 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
         </Modal>
     );
   }
-
 
   function handleSubmitFood(e) {
     e.preventDefault();
@@ -467,7 +466,7 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
         </Modal>
     );
   }
-  
+
   return (
     <nav className="vacation-container">
           {body === "deleted" ? 
@@ -492,7 +491,9 @@ export default function VacationCard({body, vacation, handleDelete, handleClick,
                 </div> 
                 <div className="row" >
                     <div className="col">
-                        Participants:
+                        Participants: {vacation.users.map((p) => 
+                          <> {p.username},</>
+                        )}
                     </div>
                   </div>
                 <div className="row align-items-start" id="clickers">

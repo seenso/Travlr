@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import "./vacations.scss"
 
-export default function Vacations({user, body, setBody, vacationRequest, setVacationRequest,}) {
+export default function Vacations({user, body, setBody, vacationRequest, setVacationRequest, participants, vacation}) {
 const [vacationCard, setVacationCard] = useState("");
 
   // This deletes a VacationUser instance that has the @current_user.id and the clicked vacation's id. This does not re-render all vacations. The page needs to be reset, then user is taken back to the login page. Once logged back in, changes will show.
@@ -50,6 +50,7 @@ const [vacationCard, setVacationCard] = useState("");
                   key={v.title}
                   vacationRequest={vacationRequest}
                   setVacationRequest={setVacationRequest}
+                  participants={v.users}
                 />
               ) : 
                 <VacationCard 
@@ -59,6 +60,7 @@ const [vacationCard, setVacationCard] = useState("");
                   handleDelete={handleDelete} 
                   buttonText={"Return to All Vacations"} 
                   handleClick={returnToVacations}
+                  participants={vacationCard.users}
                 />
                 }
       </nav>

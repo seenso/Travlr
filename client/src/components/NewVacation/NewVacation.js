@@ -12,7 +12,7 @@ import Select from 'react-select'
 import "./newvacation.scss"
 
 
-export default function NewVacation( { user, userList, setUserList, vacationRequest, setVacationRequest }) {
+export default function NewVacation( { user, userList, setUserList, vacationRequest, setVacationRequest, participants, setParticipants }) {
   const [title, setTitle] = useState("")
   const [location, setLocation] = useState("")
   const [vacation, setVacation] = useState("")
@@ -22,7 +22,6 @@ export default function NewVacation( { user, userList, setUserList, vacationRequ
   const [number_of_food, setNumber_of_food] = useState(0)
   const [number_of_activities, setNumber_of_activities] = useState(0)
   const [errors, setErrors] = useState([]);
-  const [participants, setParticipants] = useState([])
   
   const navigate = useNavigate()
 
@@ -44,34 +43,54 @@ export default function NewVacation( { user, userList, setUserList, vacationRequ
         }),
     })
     .then((r)=>{
-        // console.log(r)
+        // // console.log(r)
+        // if (r.ok) {
+        //   r.json().then((vacation) => {
+        //     handleOtherSubmit(vacation);
+        //     setVacationRequest(vacationRequest+1)
+        //     navigate("/vacations")
+        //   })
+        // } else {
+        //   r.json().then((err) => setErrors(err.errors));
+        // }
         if (r.ok) {
-          r.json().then((vacation) => {
-            handleOtherSubmit(vacation);
-            setVacationRequest(vacationRequest+1)
-            navigate("/vacations")
+          // console.log("IS THIS THE CURRENT VACATION?", vacation) // gave arr of all vacations
+          // CREATE VACATION_USER RECORD FOR EACH PARTICIPANT              
+          participants.map((p) =>{
+            fetch("/vacation_users", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                user_id: p.id,
+                vacation_id: vacation.length+1
+              }),
+            })
           })
+          // UPDATE VACATION STATE
+          setVacation(vacation)
         } else {
           r.json().then((err) => setErrors(err.errors));
         }
     })
   }
 
-  function handleOtherSubmit(vacation){
-    participants.map((v) =>{
-      fetch("/vacation_users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          user_id: v.id,
-          vacation_id: vacation.id
-        }),
-      })
-    })
-    setVacation(vacation)
-  }
+  // function handleOtherSubmit(vacation){
+  //   participants.map((v) =>{
+  //     fetch("/vacation_users", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         user_id: v.id,
+  //         vacation_id: vacation.id
+  //       }),
+  //     })
+  //   })
+  //   setVacation(vacation)
+  // }
 
   const createOptions = () => {
     return userList.map((u) => ({value: u.username, label: u.username, id: u.id}))

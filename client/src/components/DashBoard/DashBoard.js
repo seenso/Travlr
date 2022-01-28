@@ -5,6 +5,7 @@ import Home from "../Home/Home";
 import Landing from "../Landing/Landing";
 import NewVacation from "../NewVacation/NewVacation";
 import Vacations from "../Vacations/Vacations"; 
+
 import { useState } from 'react';
 
 import "./dashboard.scss"
@@ -19,7 +20,7 @@ export default function DashBoard({
   vacationRequest, setVacationRequest 
 }) {
   const [body, setBody] = useState("vacations");
-
+  const [participants, setParticipants] = useState([])
 
   return (
     <Router>
@@ -27,7 +28,9 @@ export default function DashBoard({
             <NavBar setUser={setUser} setBody={setBody}/>
             <div className="content">
                 <Routes>
-                    <Route exact path="/" element={user ? <Home user={user}/> : <Landing user={user} onLogin={onLogin}/>} />
+                    <Route exact path="/" element={
+                      user ? <Home user={user}/> : <Landing user={user} onLogin={onLogin}/>
+                      } />
                     <Route exact path="/new" element={
                       <NewVacation 
                         user={user} 
@@ -38,6 +41,8 @@ export default function DashBoard({
                         setUserList={setUserList}
                         vacationRequest={vacationRequest}
                         setVacationRequest={setVacationRequest}
+                        participants={participants}
+                        setParticipants={setParticipants}
                       />
                     } />
                     <Route exact path="/vacations" element={
@@ -47,8 +52,8 @@ export default function DashBoard({
                         user={user} 
                         setBody={setBody} 
                         body={body}
-                        vacationRequest={vacationRequest}
-                        setVacationRequest={setVacationRequest}
+                        vacation={vacation}
+                        participants={participants}
                       /> 
                     } />
                 </Routes>

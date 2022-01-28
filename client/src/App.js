@@ -63,6 +63,7 @@ export default function App() {
         setUserList={setUserList}
         vacationRequest={vacationRequest}
         setVacationRequest={setVacationRequest}
+        onLogin={setUser}
       />
     </div>
   )
