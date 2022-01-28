@@ -64,16 +64,11 @@ const [removedItemMsg, setRemovedItemMsg] = useState("Vacation");
                   handleDelete={handleDelete} 
                   buttonText={"Return to All Vacations"} 
                   handleClick={returnToVacations}
-<<<<<<< HEAD
                   removedItemMsg={removedItemMsg}
                   setRemovedItemMsg={setRemovedItemMsg}
                   seePlans={seePlans}
-=======
                   vacationRequest={vacationRequest}
                   setVacationRequest={setVacationRequest}
-                  seePlans={seePlans}
-
->>>>>>> cc95bef97b91a44625fcf93a40df7490ec29f673
                 />
                 }
       </nav>
