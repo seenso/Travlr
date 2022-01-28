@@ -27,7 +27,6 @@ export default function App() {
   
   useEffect(() => {
     fetch("/users").then((r) => {
-      // console.log(r)
       if (r.ok) {
         r.json().then((userList) => setUserList(userList));
       }
@@ -44,9 +43,6 @@ export default function App() {
       }
     });
   }, [vacationRequest]);
-
-  // console.log(user)
-  // console.log(isLoading)
 
   if (!user.username && !isLoading) return (
     <div className="App">
