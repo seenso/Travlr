@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table'
 import "./vacationcard.scss"
 
 
-export default function VacationCard({body, setBody, vacation, setVacation, handleDelete, handleClick, buttonText, vacationRequest, setVacationRequest}) {
+export default function VacationCard({body, setBody, vacation, setVacation, handleDelete, handleClick, buttonText, seePlans, vacationRequest, setVacationRequest}) {
   const [lodgingModalShow, setLodgingModalShow] = React.useState(false);
   const [foodModalShow, setFoodModalShow] = React.useState(false);
   const [activityModalShow, setActivityModalShow] = React.useState(false);
@@ -65,6 +65,8 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
         setIsLoading(false);
         if (r.ok) {
           r.json().then((lodging) => setLodging(lodging));
+          seePlans(e)
+          setLodgingModalShow(false)
         } else {
           r.json().then((err) => setErrors(err.errors));
         }
@@ -108,7 +110,7 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-                <Form onSubmit={handleSubmitLodging}>
+                <Form onSubmit={handleSubmitLodging}  id={vacation.id}>
                     <div className="form-group">
                         <label>Name*</label>
                         <input 
@@ -215,6 +217,8 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
       setIsLoading(false);
       if (r.ok) {
         r.json().then((foods) => setFoods(foods));
+        seePlans(e)
+        setFoodModalShow(false)
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -254,7 +258,7 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
             </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-                <Form onSubmit={handleSubmitFood}>
+                <Form onSubmit={handleSubmitFood}  id={vacation.id}>
                     <div className="form-group">
                         <label>Name*</label>
                         <input 
@@ -352,7 +356,9 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
       if (r.ok) {
         r.json().then((activity) => {
           setActivity(activity);
-          // setVacationRequest(vacationRequest+1)
+          setVacationRequest(vacationRequest+1)
+          seePlans(e)
+          setActivityModalShow(false)
         });
       } else {
         r.json().then((err) => setErrors(err.errors));
