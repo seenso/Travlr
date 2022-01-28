@@ -12,5 +12,6 @@ class Vacation < ApplicationRecord
     has_many :activities, dependent: :destroy
     has_many :vacation_users, dependent: :destroy
     has_many :users, through: :vacation_users
+        
 end
 

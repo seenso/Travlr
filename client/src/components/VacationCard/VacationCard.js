@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table'
 import "./vacationcard.scss"
 
 
-export default function VacationCard({body, setBody, vacation, handleDelete, handleClick, buttonText, vacationRequest, setVacationRequest, participants }) {
+export default function VacationCard({body, setBody, vacation, setVacation, handleDelete, handleClick, buttonText, vacationRequest, setVacationRequest}) {
   const [lodgingModalShow, setLodgingModalShow] = React.useState(false);
   const [foodModalShow, setFoodModalShow] = React.useState(false);
   const [activityModalShow, setActivityModalShow] = React.useState(false);
@@ -473,9 +473,9 @@ export default function VacationCard({body, setBody, vacation, handleDelete, han
             <div>This vacation has been removed!</div> :
               <div className="container-fluid border" id="vacation-card">
                 <div className="row" >
-                    <h4 className="col" id="titleheader">
+                    <div className="col" id="titleheader">
                       {vacation.title}
-                    </h4>
+                    </div>
                 </div>
                 <div className="row" >
                     <div className="col">
@@ -491,9 +491,9 @@ export default function VacationCard({body, setBody, vacation, handleDelete, han
                 </div> 
                 <div className="row" >
                     <div className="col">
-                        Participants: {vacation.users.map((p) => 
+                        {/* Participants: {vacation.users.map((p) => 
                           <> {p.username},</>
-                        )}
+                        )} */}
                     </div>
                   </div>
                 <div className="row align-items-start" id="clickers">
@@ -514,10 +514,9 @@ export default function VacationCard({body, setBody, vacation, handleDelete, han
                 </div>
               </div>
           }
-          <Table className="table" id="render-options">
-            <thead>
-              <tr>
-                {vacation.lodgings && body === "card" ? <th scope="col">
+          <div className="container-fluid border">
+            <div className="row" style={{"textAlign":"center"}}>
+                {vacation.lodgings && body === "card" ? <div className="col">
                   <h5>Where To Stay</h5>
                   <Button 
                     className="button" 
@@ -525,25 +524,23 @@ export default function VacationCard({body, setBody, vacation, handleDelete, han
                     onClick={() => setLodgingModalShow(true)} 
                   >Add Lodging</Button>
                   <AddLodgingModal
-                    errors={errors}
                     show={lodgingModalShow}
                     onHide={() => setLodgingModalShow(false)}
                   />
-                </th> : null}
-                {vacation.foods && body === "card" ? <th scope="col">
+                  </div> : null}
+                {vacation.foods && body === "card" ? <div className="col">
                   <h5>Where To Eat</h5>
                   <Button 
                         className="button" 
-                        style={{ backgroundColor: "#3E5C76"}}
+                        style={{ backgroundColor: "#3E5C76", margin: "1%"}}
                         onClick={() => setFoodModalShow(true)} 
                   >Add Food</Button>
                   <AddFoodModal
-                    errors={errors}
                     show={foodModalShow}
                     onHide={() => setFoodModalShow(false)}
                   />
-                </th> : null}
-                {vacation.activities && body === "card" ? <th scope="col">
+                </div> : null}
+                {vacation.activities && body === "card" ? <div className="col">
                   <h5>What to do</h5>
                   <Button 
                         className="button" 
@@ -551,39 +548,35 @@ export default function VacationCard({body, setBody, vacation, handleDelete, han
                         onClick={() => setActivityModalShow(true)} 
                   >Add Activity</Button>
                   <AddActivityModal
-                    errors={errors}
                     show={activityModalShow}
                     onHide={() => setActivityModalShow(false)}
                   />
-                </th> : null}
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
+                </div> : null}
+            </div>
+            <div className="row">
+                <div className="col" id="vcol">
                 {vacation.lodgings && body === "card" ?
                 vacation.lodgings.map((place)=> 
-                <OptionsCard option={place} key={place.id}/>)
+                <OptionsCard option={place} key={place.id} name="Lodging" type="lodgings" setBody={setBody} body={body} setVacation={setVacation}/>)
                 : null            
                 }
-                </td>
-                <td>
+                </div>
+                <div className="col" id="fcol">
                  {vacation.foods && body === "card" ?
                 vacation.foods.map((f)=> 
-                <OptionsCard option={f} key={f.id}/>)
+                <OptionsCard option={f} key={f.id} name="Food" type="foods" setBody={setBody} body={body} setVacation={setVacation}/>)
                 : null            
                 }
-                </td>
-                <td>
+                </div>
+                <div className="col" id="acol">
                  {vacation.activities && body === "card" ?
                 vacation.activities.map((a)=> 
-                <OptionsCard option={a} key={a.id}/>)
+                <OptionsCard option={a} key={a.id} name="Activity" type="activities" setBody={setBody} body={body} setVacation={setVacation}/>)
                 : null            
                 }
-                </td>
-              </tr>
-            </tbody>
-          </Table>   
+                </div>
+            </div>
+          </div>   
     </nav>
   );
 }

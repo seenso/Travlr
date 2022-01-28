@@ -50,17 +50,16 @@ const [vacationCard, setVacationCard] = useState("");
                   key={v.title}
                   vacationRequest={vacationRequest}
                   setVacationRequest={setVacationRequest}
-                  participants={v.users}
                 />
-              ) : 
+                ) : 
                 <VacationCard 
                   body={body} 
                   setBody={setBody} 
-                  vacation={vacationCard} 
+                  vacation={vacationCard}
+                  setVacation={setVacationCard} 
                   handleDelete={handleDelete} 
                   buttonText={"Return to All Vacations"} 
                   handleClick={returnToVacations}
-                  participants={vacationCard.users}
                 />
                 }
       </nav>
