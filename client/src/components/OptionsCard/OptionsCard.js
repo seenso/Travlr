@@ -9,6 +9,8 @@ import "./optionscard.scss"
 export default function OptionsCard({option, type, name, setBody, body, setVacation, setRemovedItemMsg, setReturnToVacay}) {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(option.likes);
+  const [showMore, setShowMore] = useState(`${option.desc.slice(0,50)}...`)
+  const [showMoreToggle, setshowMoreToggle] = useState("more")
 
 
   function handleDelete (e) {
@@ -71,6 +73,17 @@ export default function OptionsCard({option, type, name, setBody, body, setVacat
       .then(res=> res.json())
       .then(json=>setVacation(json))
   }
+
+  function handleShowMore () {
+    if (showMoreToggle === "more") {
+      setShowMore(`${option.desc}`)
+      setshowMoreToggle("less")
+    } else {
+      setShowMore(`${option.desc.slice(0,50)}...`)
+      setshowMoreToggle("more")
+    }
+
+  }
   
 
   return (
@@ -97,10 +110,10 @@ export default function OptionsCard({option, type, name, setBody, body, setVacat
             </div>
             <div className="row" >
                 <div className="col">
-                    <h6>Website: <a href={option.url} target="_blank" style={{"fontWeight":"100"}}>{option.url}</a></h6>
+                    <h6>Website: <a href={option.url} target="_blank" style={{"fontWeight":"100"}}>{option.url.slice(0,30)}...</a></h6>
                     <h6>Hours: <span style={{"fontWeight":"100"}}>{option.hours}</span></h6>
                     <h6>Address: <span style={{"fontWeight":"100"}}>{option.address}</span></h6>
-                    <h6>About: <span style={{"fontWeight":"100"}}>{option.desc}</span></h6>
+                    <h6>About: <span style={{"fontWeight":"100"}}>{showMore}</span><span onClick={handleShowMore}>{showMoreToggle}</span></h6>
                     <h6>Estimated Cost: <span style={{"fontWeight":"100"}}>${option.estimated_cost}</span></h6>                 
                 </div>
             </div> 
