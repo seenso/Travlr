@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import OptionsCard from "../OptionsCard/OptionsCard";
+import LodgingsCard from "../LodgingsCard/LodgingsCard";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -579,7 +580,7 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
                 <div className="col" id="vcol">
                 {vacation.lodgings && body === "card" ?
                   vacation.lodgings.map((place)=> 
-                    <OptionsCard 
+                    <LodgingsCard 
                       option={place}
                       key={place.id}
                       name="Lodging"
