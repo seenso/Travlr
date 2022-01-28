@@ -507,9 +507,14 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
                 </div> 
                 <div className="row" >
                     <div className="col">
-                        {/* Participants: {vacation.users.map((p) => 
-                          <> {p.username},</>
-                        )} */}
+                      {console.log(vacation)}
+                      {body === "card" ? <>{console.log(vacation)}</> : 
+                      <> 
+                        Participants: {vacation.users.map((p) => 
+                          <> {p.username}, </>
+                        )}
+                      </>}
+                       
                     </div>
                   </div>
                 <div className="row align-items-start" id="clickers">

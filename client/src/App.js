@@ -32,13 +32,15 @@ export default function App() {
         r.json().then((userList) => setUserList(userList));
       }
     });
-  }, []);
+  }, [vacationRequest]);
 
   useEffect(() => {
+    setIsLoading(true)
     fetch("/vacations").then((r) => {
       if (r.ok) {
         console.log("Vacations Fetched!")
         r.json().then((vacation) => setVacation(vacation));
+        setIsLoading(false)
       }
     });
   }, [vacationRequest]);
@@ -48,7 +50,7 @@ export default function App() {
 
   if (!user.username && !isLoading) return (
     <div className="App">
-      <Landing onLogin={setUser} />
+      <Landing onLogin={setUser} vacationRequest={vacationRequest} setVacationRequest={setVacationRequest}/>
     </div>
   )
   
