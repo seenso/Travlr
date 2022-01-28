@@ -6,29 +6,28 @@ import Button from "react-bootstrap/Button";
 import "./optionscard.scss"
 
 
-export default function OptionsCard({option, type, name, setBody, body, setVacation}) {
+export default function OptionsCard({option, type, name, setBody, body, setVacation, removedItemMsg, setRemovedItemMsg, seePlans, handleRepullVacations, setReturnToVacay}) {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(option.likes);
 
 
   function handleDelete (e) {
     console.log("I was clicked to delete food")
-    console.log(type)
-    console.log(option.id)
-    fetch(`/${type}/${option.id}`, {
-      method:'DELETE'
-      })
-      .then(res => {
-        if(res.ok){
-          console.log(res)
-          setBody("deleted")
-        } else {
-        res.json().then(console.log)
-        }
-      })
+    console.log(option)
+    setRemovedItemMsg(option.name)
+    setReturnToVacay(option.vacation)
+      // fetch(`/${type}/${option.id}`, {
+    //   method:'DELETE'
+    //   })
+    //   .then(res => {
+    //     if(res.ok){
+    //       console.log(res)
+    //     } else {
+    //     res.json().then(console.log)
+    //     }
+    //   })
+      setBody("deleted")
 
-    console.log(type)
-    console.log(option.id)
   }
 
   function toggleLike (e) {
@@ -68,18 +67,12 @@ export default function OptionsCard({option, type, name, setBody, body, setVacat
         }))
       }
   }
-
-  function handleRepullVacations (vacation){
-    fetch(`/vacations/${vacation}`)
-      .then(res=> res.json())
-      .then(json=>setVacation(json))
-  }
   
 
   return (
     <> 
-      {body === "deleted" ? 
-        <h1 style={{"text-align": "center"}}>This {name} Has Been Removed</h1> :
+      {body === "deleted" ? null
+        :
         <div className="row">
             <div className="container-fluid border" id="option-card">
             <div className="row" >

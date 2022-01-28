@@ -6,6 +6,7 @@ import "./vacations.scss"
 
 export default function Vacations({user, body, setBody, vacationRequest, setVacationRequest, participants, vacation}) {
 const [vacationCard, setVacationCard] = useState("");
+const [removedItemMsg, setRemovedItemMsg] = useState("Vacation");
 
   // This deletes a VacationUser instance that has the @current_user.id and the clicked vacation's id. This does not re-render all vacations. The page needs to be reset, then user is taken back to the login page. Once logged back in, changes will show.
   function handleDelete (e) {
@@ -18,6 +19,7 @@ const [vacationCard, setVacationCard] = useState("");
           console.log(res)
           setBody("deleted")
           setVacationRequest(vacationRequest+1)
+          setRemovedItemMsg("Vacation")
         } else {
         res.json().then(console.log)
         }
@@ -60,6 +62,9 @@ const [vacationCard, setVacationCard] = useState("");
                   handleDelete={handleDelete} 
                   buttonText={"Return to All Vacations"} 
                   handleClick={returnToVacations}
+                  removedItemMsg={removedItemMsg}
+                  setRemovedItemMsg={setRemovedItemMsg}
+                  seePlans={seePlans}
                 />
                 }
       </nav>

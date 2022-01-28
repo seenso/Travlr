@@ -9,10 +9,11 @@ import Table from 'react-bootstrap/Table'
 import "./vacationcard.scss"
 
 
-export default function VacationCard({body, setBody, vacation, setVacation, handleDelete, handleClick, buttonText, vacationRequest, setVacationRequest}) {
+export default function VacationCard({body, setBody, vacation, setVacation, handleDelete, handleClick, buttonText, vacationRequest, setVacationRequest, removedItemMsg, setRemovedItemMsg, seePlans}) {
   const [lodgingModalShow, setLodgingModalShow] = React.useState(false);
   const [foodModalShow, setFoodModalShow] = React.useState(false);
   const [activityModalShow, setActivityModalShow] = React.useState(false);
+  const [returnToVacay, setReturnToVacay] = useState("");
 
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -470,7 +471,17 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
   return (
     <nav className="vacation-container">
           {body === "deleted" ? 
-            <div>This vacation has been removed!</div> :
+            <>
+              <h1 style={{"text-align": "center"}}>{removedItemMsg} Has Been Removed</h1> 
+              <div className="col">
+              <Button 
+                onClick={seePlans} 
+                className="button" 
+                id={returnToVacay.id}
+                style={{ backgroundColor: "#3E5C76", margin: "1%", "font-size":"12px"}}
+              >Return to {returnToVacay.title} Plans</Button>
+              </div>
+            </> :
               <div className="container-fluid border" id="vacation-card">
                 <div className="row" >
                     <div className="col" id="titleheader">
@@ -556,24 +567,60 @@ export default function VacationCard({body, setBody, vacation, setVacation, hand
             <div className="row">
                 <div className="col" id="vcol">
                 {vacation.lodgings && body === "card" ?
-                vacation.lodgings.map((place)=> 
-                <OptionsCard option={place} key={place.id} name="Lodging" type="lodgings" setBody={setBody} body={body} setVacation={setVacation}/>)
+                  vacation.lodgings.map((place)=> 
+                    <OptionsCard 
+                      option={place}
+                      key={place.id}
+                      name="Lodging"
+                      type="lodgings"
+                      setBody={setBody}
+                      body={body}
+                      setVacation={setVacation}
+                      removedItemMsg={removedItemMsg}
+                      setRemovedItemMsg={setRemovedItemMsg}
+                      seePlans={seePlans}
+                      setReturnToVacay={setReturnToVacay}
+                    />)
                 : null            
-                }
+                  }
                 </div>
                 <div className="col" id="fcol">
                  {vacation.foods && body === "card" ?
-                vacation.foods.map((f)=> 
-                <OptionsCard option={f} key={f.id} name="Food" type="foods" setBody={setBody} body={body} setVacation={setVacation}/>)
+                  vacation.foods.map((f)=> 
+                    <OptionsCard
+                      option={f}
+                      key={f.id}
+                      name="Food"
+                      type="foods"
+                      setBody={setBody}
+                      body={body}
+                      setVacation={setVacation}
+                      removedItemMsg={removedItemMsg}
+                      setRemovedItemMsg={setRemovedItemMsg}
+                      seePlans={seePlans}
+                      setReturnToVacay={setReturnToVacay}
+                    />)
                 : null            
                 }
                 </div>
                 <div className="col" id="acol">
                  {vacation.activities && body === "card" ?
-                vacation.activities.map((a)=> 
-                <OptionsCard option={a} key={a.id} name="Activity" type="activities" setBody={setBody} body={body} setVacation={setVacation}/>)
-                : null            
-                }
+                  vacation.activities.map((a)=> 
+                    <OptionsCard
+                      option={a}
+                      key={a.id}
+                      name="Activity"
+                      type="activities"
+                      setBody={setBody}
+                      body={body}
+                      setVacation={setVacation}
+                      removedItemMsg={removedItemMsg}
+                      setRemovedItemMsg={setRemovedItemMsg}
+                      seePlans={seePlans}
+                      setReturnToVacay={setReturnToVacay}
+                    />)
+                    : null            
+                    }
                 </div>
             </div>
           </div>   
